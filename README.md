@@ -1,5 +1,5 @@
 # ecommerce_vue
-
+e-commerce web app with vuejs and firebase.
 ## Project setup
 ```
 npm install
