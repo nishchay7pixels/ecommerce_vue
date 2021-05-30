@@ -1,4 +1,4 @@
-![ECommerce - An ecommerce platform in vue.js]
+![ECommerce - An ecommerce platform in vue.js](18980[1].jpg)
 
 <div align="center">
   <h1>Ecommerce</h1>
