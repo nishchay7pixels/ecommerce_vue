@@ -4,7 +4,7 @@
 </div>
 
 <div align="center">
-  <strong>Its an sample ecommerce application built using vue.js and firebase.</strong>
+  <strong>Its a sample ecommerce application built using vue.js and firebase.</strong>
 </div>
 <br>
 
