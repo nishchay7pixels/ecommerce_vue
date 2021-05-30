@@ -1,3 +1,4 @@
+![ECommerce - An ecommerce platform in vue.js](18980[1].jpg)
 <div align="center">
   <h1>Ecommerce</h1>
 </div>
@@ -6,7 +7,7 @@
   <strong>Its an sample ecommerce application built using vue.js and firebase.</strong>
 </div>
 <br>
-![ECommerce - An ecommerce platform in vue.js](18980[1].jpg)
+
 <br>
 <div align="center">
   Technologies used: <br>
