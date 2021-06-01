@@ -21,6 +21,7 @@
   <span> | </span>
   <a href="https://cli.vuejs.org/">vue-cli</a>
 </div>
+Note - Refer https://medium.com/@anas.mammeri/vue-2-firebase-how-to-build-a-vue-app-with-firebase-authentication-system-in-15-minutes-fdce6f289c3c for firebase vue integration.
 
 <br>
 
