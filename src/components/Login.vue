@@ -150,14 +150,17 @@ export default {
     random() {
       return fb;
     },
-    signup() {
-      fb.auth().createUserWithEmailAndPassword(this.email, this.password)
-        .then(() => {
+    hideModal(){
           var modal = document.getElementsByClassName('modal-backdrop');
           console.log(modal[0]);
           modal[0].classList.remove('fade');
           modal[0].classList.remove('show');
           modal[0].remove();
+    },
+    signup() {
+      fb.auth().createUserWithEmailAndPassword(this.email, this.password)
+        .then(() => {
+          this.hideModal();
           this.$router.replace('/admin');
         })
         .catch(function(error) {
@@ -171,15 +174,18 @@ export default {
         });
     },
      signIn() {
-      fb.auth().createUserWithEmailAndPassword(this.email, this.password)
+      fb.auth().signInWithEmailAndPassword(this.email, this.password)
         .then(() => {
-          this.router.replace('/admin');
+          this.hideModal();
+          this.$router.replace('/admin');
         })
         .catch(function(error) {
           var errorCode = error.code;
           var errorMsg = error.message;
-          if(errorCode=='auth/weak-password'){
-            alert('Password too weak.')
+          if(errorCode=='auth/wrong-password'){
+            alert('Wrong Password')
+          }else if(errorCode=='auth/user-not-found'){
+            alert('User not found.')
           }else{
             alert(errorMsg);
           }
