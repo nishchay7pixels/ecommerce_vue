@@ -68,7 +68,7 @@
 </template>
 
 <script>
-
+import {fb} from '../firebase';
 
 export default {
   name: "Admin",
@@ -84,6 +84,15 @@ export default {
   methods:{
       closeMenu(){
         window.$(".page-wrapper").toggleClass("toggled");
+      },
+      logout(){
+          fb.auth().signOut()
+          .then(() => {
+              this.$router.replace('/');
+          })
+          .catch((err) =>{
+              console.log(err);
+          });
       }
   },
   
