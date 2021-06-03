@@ -8,6 +8,7 @@
       role="dialog"
       aria-labelledby="loginTitle"
       aria-hidden="true"
+      
     >
       <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content">
@@ -59,6 +60,7 @@
                     id="exampleInputEmail1"
                     aria-describedby="emailHelp"
                     placeholder="Enter email"
+                    v-model="email"
                   />
                   <small class="form-text text-muted"
                     >We'll never share your email with anyone else.</small
@@ -71,11 +73,12 @@
                     class="form-control"
                     id="exampleInputPassword1"
                     placeholder="Password"
+                    v-model="password"
                   />
                 </div>
 
                 <div class="form-group">
-                  <button class="btn btn-primary">Login</button>
+                  <button class="btn btn-primary" @click="signIn()">Login</button>
                 </div>
               </div>
               <div
@@ -149,6 +152,29 @@ export default {
     },
     signup() {
       fb.auth().createUserWithEmailAndPassword(this.email, this.password)
+        .then(() => {
+          var modal = document.getElementsByClassName('modal-backdrop');
+          console.log(modal[0]);
+          modal[0].classList.remove('fade');
+          modal[0].classList.remove('show');
+          modal[0].remove();
+          this.$router.replace('/admin');
+        })
+        .catch(function(error) {
+          var errorCode = error.code;
+          var errorMsg = error.message;
+          if(errorCode=='auth/weak-password'){
+            alert('Password too weak.')
+          }else{
+            alert(errorMsg);
+          }
+        });
+    },
+     signIn() {
+      fb.auth().createUserWithEmailAndPassword(this.email, this.password)
+        .then(() => {
+          this.router.replace('/admin');
+        })
         .catch(function(error) {
           var errorCode = error.code;
           var errorMsg = error.message;
