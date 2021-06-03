@@ -1,3 +1,4 @@
+//After adding details below rename the file as firebase.js
 import firebase from 'firebase';
 
 var firebaseConfig = {
