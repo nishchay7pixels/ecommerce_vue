@@ -57,6 +57,11 @@ const routes = [
         path: 'orders',
         name: 'OrderAdmin',
         component: () => import('../components/OrderAdmin.vue')
+      },
+      {
+        path: 'profile',
+        name: 'ProfileAdmin',
+        component: () => import('../components/ProfileAdmin.vue')
       }
     ]
   }

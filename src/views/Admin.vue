@@ -42,6 +42,12 @@
                             </router-link>
                         </li>
                         <li class="d-flex">
+                            <router-link to="/admin/profile">
+                                <i class="fa fa-user"></i>
+                                <span>Profile</span>
+                            </router-link>
+                        </li>
+                        <li class="d-flex">
                             <a href="#" @click="logout()">
                                 <i class="fa fa-power-off"></i>
                                 <span>Logout</span>
