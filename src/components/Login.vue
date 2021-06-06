@@ -74,6 +74,7 @@
                     id="exampleInputPassword1"
                     placeholder="Password"
                     v-model="password"
+                    @keyup.enter="signIn()"
                   />
                 </div>
 
