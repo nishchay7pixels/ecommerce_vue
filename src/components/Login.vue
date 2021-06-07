@@ -8,7 +8,6 @@
       role="dialog"
       aria-labelledby="loginTitle"
       aria-hidden="true"
-      
     >
       <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content">
@@ -77,10 +76,13 @@
                     @keyup.enter="signIn()"
                   />
                 </div>
-
+                <br />
                 <div class="form-group">
-                  <button class="btn btn-primary" @click="signIn()">Login</button>
+                  <button class="btn btn-primary" @click="signIn()">
+                    Login
+                  </button>
                 </div>
+                <a class="btn" @click="resetPassword">Forget password?</a>
               </div>
               <div
                 class="tab-pane fade"
@@ -124,7 +126,9 @@
                 </div>
 
                 <div class="form-group">
-                  <button @click="signup()" class="btn btn-primary">Signup</button>
+                  <button @click="signup()" class="btn btn-primary">
+                    Signup
+                  </button>
                 </div>
               </div>
             </div>
@@ -135,7 +139,7 @@
   </div>
 </template>
 <script>
-import {fb} from '../firebase.js';
+import { fb, db } from "../firebase.js";
 
 export default {
   name: "Login",
@@ -145,53 +149,99 @@ export default {
       name: null,
       email: null,
       password: null,
+      uid: null,
     };
   },
-  methods:{
+  methods: {
+    resetPassword() {
+      if (this.email== null || this.email == "") {
+        alert("Enter a registered email to get reset password email");
+      } else {
+        var auth = fb.auth();
+        var emailAddress = this.email;
+
+        auth
+          .sendPasswordResetEmail(emailAddress)
+          .then(function () {
+            alert("Reset Email Sent!");
+          })
+          .catch(function (error) {
+            // An error happened.
+            console.log(error.message);
+            if(error.code=="auth/user-not-found"){
+              alert("User not found");
+            }
+          });
+      }
+    },
     random() {
       return fb;
     },
-    hideModal(){
-          var modal = document.getElementsByClassName('modal-backdrop');
-          console.log(modal[0]);
-          modal[0].classList.remove('fade');
-          modal[0].classList.remove('show');
-          modal[0].remove();
+    hideModal() {
+      var modal = document.getElementsByClassName("modal-backdrop");
+      console.log(modal[0]);
+      modal[0].classList.remove("fade");
+      modal[0].classList.remove("show");
+      modal[0].remove();
+    },
+    saveUser(userid) {
+      db.collection("Account")
+        .doc(userid + "")
+        .set({ email: this.email, userId: userid, username: "" })
+        .then(() => {
+          console.log("Document Id:");
+        })
+        .catch((error) => {
+          console.error("Error adding user", error);
+        });
+      db.collection("Profile")
+        .doc(userid + "")
+        .set({ fullname: this.name, phone: "", postcode: "", address: "" })
+        .then(() => {
+          console.log("Document ");
+        })
+        .catch((error) => {
+          console.error("Error adding user", error);
+        });
     },
     signup() {
-      fb.auth().createUserWithEmailAndPassword(this.email, this.password)
+      fb.auth()
+        .createUserWithEmailAndPassword(this.email, this.password)
         .then(() => {
+          var user = fb.auth().currentUser;
+          this.saveUser(user.uid);
           this.hideModal();
-          this.$router.replace('/admin');
+          this.$router.replace("/admin");
         })
-        .catch(function(error) {
+        .catch(function (error) {
           var errorCode = error.code;
           var errorMsg = error.message;
-          if(errorCode=='auth/weak-password'){
-            alert('Password too weak.')
-          }else{
+          if (errorCode == "auth/weak-password") {
+            alert("Password too weak.");
+          } else {
             alert(errorMsg);
           }
         });
     },
-     signIn() {
-      fb.auth().signInWithEmailAndPassword(this.email, this.password)
+    signIn() {
+      fb.auth()
+        .signInWithEmailAndPassword(this.email, this.password)
         .then(() => {
           this.hideModal();
-          this.$router.replace('/admin');
+          this.$router.replace("/admin");
         })
-        .catch(function(error) {
+        .catch(function (error) {
           var errorCode = error.code;
           var errorMsg = error.message;
-          if(errorCode=='auth/wrong-password'){
-            alert('Wrong Password')
-          }else if(errorCode=='auth/user-not-found'){
-            alert('User not found.')
-          }else{
+          if (errorCode == "auth/wrong-password") {
+            alert("Wrong Password");
+          } else if (errorCode == "auth/user-not-found") {
+            alert("User not found.");
+          } else {
             alert(errorMsg);
           }
         });
-    }
-  }
+    },
+  },
 };
 </script>

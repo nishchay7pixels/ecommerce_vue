@@ -49,6 +49,7 @@
                   type="text"
                   placeholder="Full name"
                   class="form-control"
+                  v-model="profile.fullname"
                 />
               </div>
               <div class="col">
@@ -56,6 +57,7 @@
                   type="text"
                   placeholder="Phone Number"
                   class="form-control"
+                  v-model="profile.phone"
                 />
               </div>
             </div>
@@ -66,20 +68,24 @@
                   type="text"
                   placeholder="Address"
                   class="form-control"
+                  v-model="profile.address"
                 />
               </div>
             </div>
             <br />
             <div class="row">
               <div class="col-10">
-                <INPUT
+                <input
                   type="text"
                   placeholder="Postcode"
                   class="form-control"
+                  v-model="profile.postcode"
                 />
               </div>
               <div class="d-grid gap-2 col-2 mx-auto">
-                <button class="btn btn-primary">Save Changes</button>
+                <button class="btn btn-primary" @click="saveProfile">
+                  Save Changes
+                </button>
               </div>
             </div>
           </div>
@@ -101,40 +107,47 @@
                   type="text"
                   placeholder="User name"
                   class="form-control"
+                  v-model="account.username"
                 />
               </div>
               <div class="col">
-                <input type="email" placeholder="Email" class="form-control" />
+                <input
+                  type="email"
+                  placeholder="Email"
+                  class="form-control"
+                  v-model="account.email"
+                />
               </div>
             </div>
 
             <br />
             <div class="row">
               <div class="col-6">
-                <INPUT
+                <input
                   type="text"
                   placeholder="New password"
                   class="form-control"
+                  v-model="password.new"
                 />
               </div>
               <div class="col">
-                <INPUT
+                <input
                   type="text"
                   placeholder="Confirm password"
                   class="form-control"
+                  v-model="password.repeat"
                 />
               </div>
             </div>
             <br />
             <div class="row">
-              <div class="col-10">
-                <div>
-                  <input class="form-control" type="file" id="formFile" />
-                </div>
+              <div class="col-4"></div>
+              <div class="d-grid gap-2 col-4 mx-auto">
+                <button class="btn btn-primary" @click="saveAccount">
+                  Save Changes
+                </button>
               </div>
-              <div class="d-grid gap-2 col-2 mx-auto">
-                <button class="btn btn-primary">Save Changes</button>
-              </div>
+              <div class="col-4"></div>
             </div>
           </div>
         </div>
@@ -143,8 +156,122 @@
   </div>
 </template>
 <script>
+import { fb, db } from "../firebase";
 export default {
   name: "admin-profile",
+  data() {
+    return {
+      account: {
+        userId: null,
+        username: null,
+        email: null,
+      },
+      profile: {
+        fullname: "",
+        phone: "",
+        address: "",
+        postcode: "",
+      },
+      password: {
+        new: "",
+        repeat: "",
+      },
+    };
+  },
+  methods: {
+    saveProfile() {
+      console.log(this.profile);
+      if (
+        this.profile.fullname == "" ||
+        this.profile.phone == "" ||
+        this.profile.address == "" ||
+        this.profile.postcode == ""
+      ) {
+        alert("Enter Required details");
+      } else {
+        db.collection("Profile")
+          .doc(this.account.userId)
+          .set(this.profile)
+          .then(() => {
+            console.log("Profile Information Saved.");
+          })
+          .catch((error) => {
+            console.error("Error saving profile information", error);
+          });
+      }
+    },
+    saveAccount() {
+      if (
+        this.account.userId == null ||
+        this.account.username == null ||
+        this.account.email == ""
+      ) {
+        alert("Enter Required details");
+      } else {
+        if (
+          this.password.new === this.password.repeat &&
+          this.password.new != ""
+        ) {
+          fb.auth()
+            .currentUser.updatePassword(this.password.new)
+            .then(function () {
+              console.log("Password updated successfully");
+            })
+            .catch(function (error) {
+              // An error happened.
+              console.log("Password update failed due to below error");
+              console.error(error);
+              alert("Please choose a valid password.");
+            });
+        }
+        db.collection("Account")
+          .doc(this.account.userId + "")
+          .set(this.account)
+          .then(() => {
+            console.log("Account Information Saved");
+          })
+          .catch((error) => {
+            console.error("Error saving account information", error);
+          });
+        console.log(this.password);
+      }
+    },
+  },
+  created() {
+    let user = fb.auth().currentUser;
+    this.account.userId = user.uid;
+    this.account.email = user.email;
+    console.log(this.account.userId);
+    //var docRef = db.collection("Profile").doc(this.account.userId);
+    db.collection("Profile")
+      .doc(this.account.userId)
+      .get()
+      .then((doc) => {
+        if (doc.exists) {
+          this.profile = doc.data();
+        } else {
+          // doc.data() will be undefined in this case
+          console.log("No such document!");
+        }
+      })
+      .catch((error) => {
+        console.log("Error getting document:", error);
+      });
+    db.collection("Account")
+      .doc(this.account.userId)
+      .get()
+      .then((doc) => {
+        if (doc.exists) {
+          this.account = doc.data();
+        } else {
+          // doc.data() will be undefined in this case
+          console.log("No such document!");
+        }
+      })
+      .catch((error) => {
+        console.log("Error getting document:", error);
+      });
+  },
 };
 </script>
 <style>
