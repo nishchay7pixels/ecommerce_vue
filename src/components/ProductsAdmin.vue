@@ -148,6 +148,7 @@ export default {
           description: null,
           tags: [],
           image: [],
+          uid: null,
         },
       },
       products: [],
@@ -155,6 +156,7 @@ export default {
     };
   },
   created() {
+    this.resetData();
     this.getAll();
     this.watcher();
   },
@@ -213,15 +215,24 @@ export default {
       }
     },
     clearForm() {
-      this.resetData();
-      this.getAll();
+      this.product.price = null;
+      this.product.name = null;
+      this.product.description = null;
+      this.product.tags = [];
+      this.product.image = [];
+
+      //this.resetData();
+      //this.getAll();
     },
     addTag() {
       this.product.data.tags.push(this.tag);
       this.tag = "";
     },
     watcher() {
-      db.collection("Products").onSnapshot((querySnapshot) => {
+      let user = fb.auth().currentUser;
+      this.product.data.uid = user.uid;
+      console.log(this.product.data.uid);
+      db.collection("Products").where("uid", "==", this.product.data.uid).onSnapshot((querySnapshot) => {
         this.products = [];
         querySnapshot.forEach((doc) => {
           this.products.push({ id: doc.id, data: doc.data() });
@@ -232,8 +243,8 @@ export default {
       if (
         this.product.data.name == null ||
         this.product.data.price == null ||
-        this.product.data.name == ''||
-        this.product.data.price == ''
+        this.product.data.name == "" ||
+        this.product.data.price == ""
       ) {
         alert("Enter Required details");
       } else {
@@ -255,7 +266,11 @@ export default {
       Object.assign(this.$data, this.$options.data.apply(this)); //another way to reset data
     },
     getAll() {
+      let user = fb.auth().currentUser;
+      this.product.data.uid = user.uid;
+      console.log(this.product.data.uid);
       db.collection("Products")
+        .where("uid", "==", this.product.data.uid)
         .get()
         .then((querySnapshot) => {
           querySnapshot.forEach((element) => {
@@ -274,8 +289,8 @@ export default {
       if (
         this.product.data.name == null ||
         this.product.data.price == null ||
-        this.product.data.name == ''||
-        this.product.data.price == ''
+        this.product.data.name == "" ||
+        this.product.data.price == ""
       ) {
         alert("Enter Required details");
       } else {
