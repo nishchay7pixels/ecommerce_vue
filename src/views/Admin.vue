@@ -110,6 +110,7 @@ export default {
       window.$(".page-wrapper").toggleClass("toggled");
     },
     logout() {
+      Object.assign(this.$data, this.$options.data.apply(this)); //another way to reset data
       fb.auth()
         .signOut()
         .then(() => {
