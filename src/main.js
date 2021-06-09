@@ -13,6 +13,7 @@ window.$ = window.jQuery = jQuery;
 Vue.config.productionTip = false
 Vue.component('Navbar',require('./components/Navbar.vue').default); //making navbar global component
 Vue.component('Footer',require('./components/Footer.vue').default); //making navbar global component
+Vue.component('add-to-cart',require('./components/AddToCart.vue').default); //making navbar global component
 
 //to prevent from logout if user refresh page in admin panel we 
 //will only create a new Vue instance when page refresh only if 

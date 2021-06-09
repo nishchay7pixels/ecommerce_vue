@@ -61,7 +61,7 @@
 </template>
 <script>
 export default {
-  name: '',
+  name: 'Product',
   props: {
   }
 }
