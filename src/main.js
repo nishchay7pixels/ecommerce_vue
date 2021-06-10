@@ -6,6 +6,10 @@ import './assets/app.scss';
 import 'popper.js'
 import jQuery from 'jquery'
 import {fb} from './firebase';
+import store from './store';
+
+//add vuex
+
 
 
 window.$ = window.jQuery = jQuery;
@@ -22,6 +26,7 @@ let app =''
 fb.auth().onAuthStateChanged(function(){
   if(!app){
     new Vue({
+      store, //vuex store
       router,
       render: h => h(App)
     }).$mount('#app')
