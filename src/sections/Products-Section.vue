@@ -31,7 +31,8 @@
                       :name="product.data.name"
                       :price="product.data.price"
                       :pid="product.id"
-                      :image="product.data.image[0]">
+                      :image="product.data.image[0]"
+                      :quantity="1">
                     </add-to-cart>
                   </div>
                 </div>
