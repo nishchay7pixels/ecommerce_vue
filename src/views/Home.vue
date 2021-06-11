@@ -2,7 +2,6 @@
 <div>
   <Navbar/>
   <div class="home">
-    <Checkout></Checkout>
     <Banner></Banner>
     <div class="b-example-divider"></div>
     <About-section></About-section>
@@ -16,7 +15,7 @@
 import Banner from '../components/Banner.vue';
 import AboutSection from '../sections/About-Section.vue';
 import ProductSection from '../sections/Products-Section.vue';
-import Checkout from './Checkout.vue';
+
 
 export default {
   name: 'Home',
@@ -24,7 +23,7 @@ export default {
     Banner,
     AboutSection,
     ProductSection,
-    Checkout
+    
   }
 }
 </script>

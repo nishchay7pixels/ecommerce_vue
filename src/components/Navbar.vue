@@ -48,6 +48,10 @@
             >
               Login
             </button>
+            
+            <router-link to="/checkout" style="margin-left: 3px;" class="btn btn-secondary"
+              >Checkout</router-link
+            >
           </div>
         </div>
       </div>
@@ -73,5 +77,6 @@ export default {
 .nav {
   display: inherit;
 }
+
 </style>
 
