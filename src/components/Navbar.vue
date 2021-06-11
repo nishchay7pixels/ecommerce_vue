@@ -49,9 +49,8 @@
               Login
             </button>
             
-            <router-link to="/checkout" style="margin-left: 3px;" class="btn btn-secondary"
-              >Checkout</router-link
-            >
+            <button @click="checkout" style="margin-left: 3px;" class="btn btn-secondary"
+              >Checkout</button>
           </div>
         </div>
       </div>
@@ -71,6 +70,11 @@ export default {
   components: {
     Login,
   },
+  methods:{
+    checkout(){
+      this.$router.push('/checkout');
+    }
+  }
 };
 </script>
 <style scoped>

@@ -5,7 +5,7 @@
 </template>
 <script>
 export default {
-  name: "add-to-card",
+  name: "add-to-cart",
   props: {
     name: String,
     price: String,

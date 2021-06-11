@@ -114,7 +114,7 @@
       <tbody>
         <tr v-for="(pro, index) in products" :key="index">
           <td>{{ pro.data.name }}</td>
-          <td>{{ pro.data.price }}</td>
+          <td>${{ pro.data.price }}</td>
           <td>
             <button @click="editProduct(pro)" class="btn btn-primary">
               Edit
@@ -248,7 +248,7 @@ export default {
       ) {
         alert("Enter Required details");
       } else {
-        this.product.data.price = "$" + this.product.data.price;
+        //this.product.data.price = "$" + this.product.data.price;
 
         db.collection("Products")
           .add(this.product.data)

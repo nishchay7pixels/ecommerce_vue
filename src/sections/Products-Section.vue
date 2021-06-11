@@ -21,7 +21,7 @@
               />
               <div class="card-body">
                 <p class="card-header">{{ product.data.name }}</p>
-                <p class="card-text">Price: {{ product.data.price }}</p>
+                <p class="card-text">Price: ${{ product.data.price }}</p>
                 <div class="d-flex justify-content-between align-items-center">
                   <div class="btn-group">
                     <!-- <button type="button" class="btn btn-sm btn-outline-danger">
@@ -32,7 +32,7 @@
                       :price="product.data.price"
                       :pid="product.id"
                       :image="product.data.image[0]"
-                      :quantity="1">
+                      :quantity="quantity">
                     </add-to-cart>
                   </div>
                 </div>
@@ -54,6 +54,7 @@ export default {
   data() {
     return {
       products: [],
+      quantity: "1"
     };
   },
   created() {

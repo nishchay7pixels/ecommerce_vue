@@ -1,15 +1,12 @@
 <template>
 <div>
   <Navbar/>
-  <div class="home">
+  <div class="about">
     <Banner></Banner>
     <div class="b-example-divider"></div>
     <About-section></About-section>
-    <Product-section></Product-section>
   </div>
-  <div class="about">
-    <AboutSection/>
-  </div>
+  
   </div>
 </template>
 <script>

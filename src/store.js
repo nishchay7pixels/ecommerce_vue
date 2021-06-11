@@ -17,6 +17,10 @@ export default new Vuex.Store({
                 //else add the item to cart
                 state.cart.push(item);
             }
+        },
+        deleteFromCart(state, pid){
+            let index = state.cart.findIndex(product => product.productId == pid);
+            state.cart.splice(index, 1)
         }
     },
     computed:{
