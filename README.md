@@ -11,7 +11,9 @@
 <br>
 <div align="center">
   Technologies used: <br>
-  <a href="">Vue.js</a>
+  <a href="https://vuejs.org/">Vue.js</a>
+  <span> | </span>
+  <a href="https://vuex.vuejs.org//">Vuex</a>
   <span> | </span>
   <a href="https://firebase.google.com/">Firebase</a>
   <span> | </span>
