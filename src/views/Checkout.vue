@@ -26,13 +26,7 @@
                 <td class="col-2">{{ product.productQuantity }}</td>
                 <td class="col-2">
                   <button
-                    @click="
-                      deleteProduct(
-                        product.productId,
-                        product.productPrice,
-                        product.productQuantity
-                      )
-                    "
+                    @click="deleteProduct(product)"
                     class="btn btn-danger"
                   >
                     Delete
@@ -44,8 +38,10 @@
         </div>
         <div class="col">
           <div class="container bill-layout">
-            <div class="header">
-              <h4>Subtotal: ${{ total }}</h4>
+            <div class="body">
+              <h4 style="margin-top: ">
+                Subtotal({{ totalQuantity }} items): ${{ total }}
+              </h4>
               <table class="table">
                 <thead>
                   <tr style="text-align: left">
@@ -79,6 +75,16 @@
                   </tr>
                 </tfoot>
               </table>
+              <div class="row">
+                <div class="col">
+                  <button
+                    class="btn btn-primary btn-lg"
+                    style="width: 100%; margin-bottom: 10px"
+                  >
+                    Proceed to Buy
+                  </button>
+                </div>
+              </div>
             </div>
           </div>
         </div>
@@ -93,17 +99,33 @@ export default {
     return {
       cart: [],
       total: null,
+      totalQuantity: null,
     };
   },
   created() {
     //fetch products
     this.cart = this.$store.state.cart;
     this.calculateTotalPrice();
+    this.calculateTotalQuantity();
   },
   methods: {
-    deleteProduct(pid, price, quantity) {
-      this.$store.commit("deleteFromCart", pid);
-      this.total = this.total - parseInt(price) * parseInt(quantity);
+    deleteProduct(item) {
+      if (parseInt(item.productQuantity) - 1 == 0) {
+        this.$store.commit("deleteFromCart", item.productId);
+      } else {
+        let index = this.cart.findIndex(
+          (product) => product.productId == item.productId
+        );
+        this.cart[index].productQuantity = this.cart[index].productQuantity - 1;
+      }
+      this.total = this.total - parseInt(item.productPrice);
+      this.totalQuantity = this.totalQuantity - 1;
+    },
+    calculateTotalQuantity() {
+      this.cart.forEach((item) => {
+        this.totalQuantity =
+          this.totalQuantity + parseInt(item.productQuantity);
+      });
     },
     calculateTotalPrice() {
       this.cart.forEach((item) => {
