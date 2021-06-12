@@ -24,6 +24,14 @@
   <a href="https://cli.vuejs.org/">vue-cli</a>
 </div>
 
+### Introduction
+I am building a fullscale ecommerce application which can be used by business (small/large) to develop and launch their own online store.
+
+It is built in a developer friendly manner with everything ready, packed and set for developers to modify and use.
+
+### Our Mission
+To create a safe and easy way to build and online ecommerce store.
+
 ### Firebase setup
 Note - Refer https://medium.com/@anas.mammeri/vue-2-firebase-how-to-build-a-vue-app-with-firebase-authentication-system-in-15-minutes-fdce6f289c3c for firebase vue integration.
 
