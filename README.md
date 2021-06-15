@@ -32,6 +32,18 @@ It is built in a developer friendly manner with everything ready, packed and set
 ## My Mission
 To create a safe and easy way to build and online ecommerce store.
 
+## To-do
+
+- [x] Create product info page
+- [ ] Add products to product page
+- [ ] Setup filters in Product Page using tags
+- [ ] Setup checkout and payments using PayU gateway
+- [ ] Create Admin/Orders component to display current orders
+- [ ] Store all the orders use make and transactiond details
+- [ ] Crete 404 Error page
+- [ ] Create logout error page
+- [ ] Create Customer checkout form for storing customer details
+
 
 
 <br>
