@@ -34,7 +34,7 @@ To create a safe and easy way to build and online ecommerce store.
 
 ## To-do
 
-- [x] Create product info page
+- [ ] Create product info page
 - [ ] Add products to product page
 - [ ] Setup filters in Product Page using tags
 - [ ] Setup checkout and payments using PayU gateway
