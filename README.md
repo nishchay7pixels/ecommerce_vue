@@ -17,6 +17,12 @@
   <span> | </span>
   <a href="https://firebase.google.com/">Firebase</a>
   <span> | </span>
+  <a href="https://nodejs.org/en/">Node.js</a>
+  <span> | </span>
+  <a href="https://www.mongodb.com/try/download/community">MondoDB</a>
+  <span> | </span>
+  <a href="https://www.heroku.com/">Heroku</a>
+  <span> | </span>
   <a href="https://getbootstrap.com/">Bootstrap</a>
   <span> | </span>
   <a href="https://fontawesome.com/">Fontawesome</a>
