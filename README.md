@@ -28,6 +28,8 @@
   <a href="https://fontawesome.com/">Fontawesome</a>
   <span> | </span>
   <a href="https://cli.vuejs.org/">vue-cli</a>
+  <span> | </span>
+  <a href="https://www.payu.in/">PayU</a>
 </div>
 
 ## Introduction
