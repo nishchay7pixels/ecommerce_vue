@@ -174,12 +174,15 @@ export default {
           console.log("Error Occured" + error);
         });
     },
-    uploadImage(e) {
+    async uploadImage(e) {
+    try{
       let file = e.target.files[0];
       if (file) {
         console.log(file);
-        var storageRef = fb.storage().ref("productsImage/" + file.name);
-        let uploadTask = storageRef.put(file);
+        //var storageRef = fb.storage().ref("productsImage/" + file.name);
+        var storageRef = fb.storage().ref();
+        var imageRef = storageRef.child("productsImage/"+file.name);
+        let uploadTask = imageRef.put(file);
         uploadTask.on(
           "state_changed",
           (snapshot) => {
@@ -213,6 +216,10 @@ export default {
           }
         );
       }
+      } catch (error) {
+        console.log("ERR ===", error);
+        alert("Image uploading failed!");
+      }
     },
     clearForm() {
       this.product.price = null;
@@ -220,7 +227,6 @@ export default {
       this.product.description = null;
       this.product.tags = [];
       this.product.image = [];
-
       //this.resetData();
       //this.getAll();
     },
@@ -249,7 +255,6 @@ export default {
         alert("Enter Required details");
       } else {
         //this.product.data.price = "$" + this.product.data.price;
-
         db.collection("Products")
           .add(this.product.data)
           .then((docRef) => {
@@ -332,7 +337,6 @@ export default {
   margin-top: 2rem;
   background: #f2f2f2;
 }
-
 .img-tile {
   position: absolute;
 }

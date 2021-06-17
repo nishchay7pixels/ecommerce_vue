@@ -29,7 +29,7 @@
                     </button> -->
                     <add-to-cart 
                       :name="product.data.name"
-                      :price="product.data.price"
+                      :price="product.data.price.toString()"
                       :pid="product.id"
                       :image="product.data.image[0]"
                       :quantity="quantity">
