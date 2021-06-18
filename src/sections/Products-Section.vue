@@ -22,11 +22,12 @@
               <div class="card-body">
                 <p class="card-header">{{ product.data.name }}</p>
                 <p class="card-text">Price: ${{ product.data.price }}</p>
-                <div class="d-flex justify-content-between align-items-center">
+                <div class="d-flex justify-content-center align-items-center">
                   <div class="btn-group">
                     <!-- <button type="button" class="btn btn-sm btn-outline-danger">
                       View
                     </button> -->
+                    <view-button :itemid="product.id" />
                     <add-to-cart
                       :_buttonclass="'btn btn-primary'"
                       :name="product.data.name"
@@ -48,9 +49,10 @@
 </template>
 <script>
 import AddToCart from "../components/AddToCart.vue";
+import ViewButton from "../components/ViewButton.vue";
 import { db } from "../firebase";
 export default {
-  components: { AddToCart },
+  components: { AddToCart, ViewButton },
   name: "Product-section",
   props: {},
   data() {

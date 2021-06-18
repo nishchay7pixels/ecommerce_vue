@@ -17,19 +17,28 @@ export default {
   data() {
     return {
       item: {
-        productId: this.pid,
-        productPrice: this.price,
-        productName: this.name,
-        productImage: this.image,
-        productQuantity: this.quantity
+        productId:null,
+        productPrice: null,
+        productName: null,
+        productImage: null,
+        productQuantity: null
       },
     };
   },
   methods: {
     addToCart() {
-      this.$store.commit("addToCart", this.item);
+      this.setItem();
       console.log(this.item);
+      console.log(this.quantity);
+      this.$store.commit("addToCart", this.item);
     },
+    setItem(){
+        this.item.productId= this.pid;
+        this.item.productPrice= this.price;
+        this.item.productName= this.name;
+        this.item.productImage= this.image;
+        this.item.productQuantity= this.quantity;
+    }
   },
 };
 </script>

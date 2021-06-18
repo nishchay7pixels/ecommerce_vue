@@ -21,8 +21,8 @@
           data-bs-parent="#accordionExample"
         >
           <div class="accordion-body">
-            <div class="row">
-              <div class="col-3">
+            <div class="row row-cols-sm-3 row-cols-md-3 row-cols-lg-3">
+              <div class="col">
                 <div class="form-check form-switch">
                   <span>
                   <label class="form-check-label" for="flexSwitchCheckDefault"
@@ -40,7 +40,7 @@
               </div>
             </div>
             <div
-              class="row row-cols-1 row-cols-sm-1 row-cols-md-3"
+              class="row row-cols-1 row-cols-sm-1 row-cols-md-1 row-cols-lg-3"
               @change="
                 $emit('filter', {
                   category: category,

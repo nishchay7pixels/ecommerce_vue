@@ -1,27 +1,41 @@
 <template>
-  <div class="position-relative overflow-hidden p-3 p-md-5 m-md-3 text-center bg-light">
+  <div
+    class="
+      position-relative
+      overflow-hidden
+      p-3 p-md-5
+      m-md-3
+      text-center
+      bg-light
+    "
+  >
     <div class="col-md-5 p-lg-5 mx-auto my-5">
       <h1 class="display-4 fw-normal">Ecommerce for Developers</h1>
-      <p class="lead fw-normal">An ecommerce store for the developers community by the developers community.</p>
-      <a class="btn btn-primary" href="#">Shop</a>
+      <p class="lead fw-normal">
+        An ecommerce store for the developers community by the developers
+        community.
+      </p>
+      <router-link to="/products" class="btn btn-primary" href="#"
+        >Shop</router-link
+      >
     </div>
     <div class="product-device shadow-sm d-none d-md-block"></div>
-    <div class="product-device product-device-2 shadow-sm d-none d-md-block"></div>
+    <div
+      class="product-device product-device-2 shadow-sm d-none d-md-block"
+    ></div>
   </div>
 </template>
 
 <script>
 export default {
-  name: 'Banner',
-  props: {
-  }
-}
+  name: "Banner",
+  props: {},
+};
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-
-  .container {
+.container {
   max-width: 960px;
 }
 
@@ -30,13 +44,13 @@ export default {
  */
 
 .site-header {
-  background-color: rgba(0, 0, 0, .85);
+  background-color: rgba(0, 0, 0, 0.85);
   -webkit-backdrop-filter: saturate(180%) blur(20px);
   backdrop-filter: saturate(180%) blur(20px);
 }
 .site-header a {
   color: #8e8e8e;
-  transition: color .15s ease-in-out;
+  transition: color 0.15s ease-in-out;
 }
 .site-header a:hover {
   color: #fff;
@@ -65,7 +79,7 @@ export default {
   bottom: 10%;
   left: 10px;
   content: "";
-  background-color: rgba(255, 255, 255, .1);
+  background-color: rgba(255, 255, 255, 0.1);
   border-radius: 5px;
 }
 
@@ -76,7 +90,6 @@ export default {
   left: 5%;
   background-color: #e5e5e5;
 }
-
 
 /*
  * Extra utilities

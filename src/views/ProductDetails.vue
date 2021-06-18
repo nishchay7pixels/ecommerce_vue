@@ -64,10 +64,11 @@
                           class="form-control form-control-sm form-check-inline"
                           style="width: 70px"
                           v-model="quantity"
+                          @change="printQuantity()"
                         >
-                          <option>1</option>
-                          <option>2</option>
-                          <option>3</option>
+                          <option value="1">1</option>
+                          <option value="2">2</option>
+                          <option value="3">3</option>
                         </select>
                       </dd>
                     </dl>
@@ -163,6 +164,9 @@ export default {
     console.log(this.product);
   },
   methods: {
+    printQuantity(){
+      console.log(this.quantity);
+    },
     async fetchDetails() {
       console.log(this.id);
       try {
