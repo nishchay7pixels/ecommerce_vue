@@ -12,33 +12,6 @@
         <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
           <div class="col" v-for="(product, index) in products" :key="index">
             <product-card :product="product"></product-card>
-            <!-- <div class="card shadow-sm">
-              <img
-                class="bd-placeholder-img card-img-top"
-                width="100%"
-                height="225"
-                :src="product.data.image[0]"
-                alt="Image"
-              />
-              <div class="card-body">
-                <p class="card-header">{{ product.data.name }}</p>
-                <p class="card-text">Price: ${{ product.data.price }}</p>
-                <div class="d-flex justify-content-center align-items-center">
-                  <div class="btn-group">
-                    <view-button :itemid="product.id" />
-                    <add-to-cart
-                      :_buttonclass="'btn btn-primary'"
-                      :name="product.data.name"
-                      :price="product.data.price.toString()"
-                      :pid="product.id"
-                      :image="product.data.image[0]"
-                      :quantity="quantity"
-                    >
-                    </add-to-cart>
-                  </div>
-                </div>
-              </div>
-            </div> -->
           </div>
         </div>
       </div>
@@ -47,9 +20,9 @@
 </template>
 <script>
 import { db } from "../firebase";
-import ProductCard from "../components/ProductCard.vue"
+import ProductCard from "../components/ProductCard.vue";
 export default {
-  components: {ProductCard },
+  components: { ProductCard },
   name: "Product-section",
   props: {},
   data() {
