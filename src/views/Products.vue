@@ -3,19 +3,23 @@
     <Navbar />
     <div class="album py-5 bg-light">
       <div class="container">
-        <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
-          <div class="col" v-for="(product, index) in products" :key="index">
+        <filter-panel @filter="handleFilter" @disable-filter="getAll"></filter-panel>
+      </div>
+      <div class="container">
+        <div class="row row-cols-1 row-cols-sm-1 row-cols-md-3 g-2">
+          <div class="col-sm" v-for="(product, index) in products" :key="index">
             <div class="card shadow-sm">
               <img
                 v-if="Array.isArray(product.data.image)"
                 class="bd-placeholder-img card-img-top"
                 width="100%"
-                height="225"
+                height="100%"
                 :src="product.data.image[0]"
-                alt="Image"
+                :error="src='../assets/noimage.png'"
                 preserveAspectRatio="xMidYMid slice"
+                alt="image not available"
+                :id="index"
               />
-
               <div class="card-body">
                 <h5>{{ product.data.name }}</h5>
                 <p class="card-text">{{ product.data.description }}</p>
@@ -36,8 +40,7 @@
                     </add-to-cart>
                   </div>
                   <small class="text-muted"
-                    ><b
-                      ><h5>Price: ${{ product.data.price }}</h5></b
+                    ><b><h5>Price: ${{ product.data.price }}</h5></b
                     ></small
                   >
                 </div>
@@ -52,6 +55,7 @@
 <script>
 import { db } from "../firebase";
 import AddToCart from "../components/AddToCart.vue";
+import FilterPanel from '../components/FilterPanel.vue';
 export default {
   name: "Product",
   data() {
@@ -62,7 +66,8 @@ export default {
     };
   },
   components:{
-    AddToCart
+    AddToCart,
+    FilterPanel
   },
   props: {},
   created() {
@@ -70,7 +75,36 @@ export default {
   },
   methods: {
     getAll() {
+      this.products= [],
       db.collection("Products")
+        .get()
+        .then((querySnapshot) => {
+          querySnapshot.forEach((element) => {
+            if(element.data().image[0]!=null){
+              this.products.push({ id: element.id, data: element.data() });
+            }
+            
+          });
+        });
+      console.log(this.products);
+    },
+    handleFilter(payload){
+      console.log(payload);
+      if(payload.category=="New Arrival"){
+        this.getNewArrivalFor(payload.gender,payload.priceMax,payload.orderBy);
+      }else{
+        this.getFor(payload.gender,payload.category.toLowerCase(),payload.priceMax,payload.orderBy);
+      }
+    },
+    getFor(gender,category,price,orderBy) {
+      //used to fetch all items based on criteria
+      this.products=[];
+      db.collection("Products")
+        .where("price", "<=", parseFloat(price))
+        .where("gender", "==", gender)
+        .where("tags", "array-contains-any", [category])
+        .orderBy("price", (orderBy=="desc"?"desc":"asc"))
+        .limit(20)
         .get()
         .then((querySnapshot) => {
           querySnapshot.forEach((element) => {
@@ -79,9 +113,15 @@ export default {
         });
       console.log(this.products);
     },
-    getFor(gender) {
+    getNewArrivalFor(gender,price,orderBy) {
+      //used to fetch new arrival items based on criteria
+      this.products=[];
       db.collection("Products")
-        .where("gender", "==", gender) // men women pride
+        .where("gender", "==", gender)// men women pride
+        .where("new_arrival", "==", true)// men women pride
+        .where("price", "<=", parseFloat(price))
+        .orderBy("price", (orderBy=="desc"?"desc":"asc"))
+        .limit(20)
         .get()
         .then((querySnapshot) => {
           querySnapshot.forEach((element) => {
