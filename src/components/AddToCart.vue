@@ -1,6 +1,6 @@
 <template>
   <div class="add-to-cart">
-    <button class="btn btn-primary" @click="addToCart()">Add to cart</button>
+    <button :class="_buttonclass" @click="addToCart()"><slot></slot> Add to cart</button>
   </div>
 </template>
 <script>
@@ -11,7 +11,8 @@ export default {
     price: String,
     pid: String,
     image: null,
-    quantity:String
+    quantity:String,
+    _buttonclass:String
   },
   data() {
     return {
