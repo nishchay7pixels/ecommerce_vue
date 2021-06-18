@@ -15,7 +15,6 @@
                 width="100%"
                 height="100%"
                 :src="product.data.image[0]"
-                :error="src='../assets/noimage.png'"
                 preserveAspectRatio="xMidYMid slice"
                 alt="image not available"
                 :id="index"
@@ -28,10 +27,12 @@
                     <button
                       type="button"
                       class="btn btn-sm btn-secondary"
+                      @click="viewDetails(product.id)"
                     >
                       View
                     </button>
                     <add-to-cart 
+                      :_buttonclass="'btn btn-primary'"
                       :name="product.data.name"
                       :price="product.data.price.toString()"
                       :pid="product.id"
@@ -74,6 +75,10 @@ export default {
     this.getAll();
   },
   methods: {
+    viewDetails(itemid){
+      console.log(itemid);
+      this.$router.push({ name: 'ProductDetails', params: { id: itemid }});
+    },
     getAll() {
       this.products= [],
       db.collection("Products")
