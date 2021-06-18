@@ -15,7 +15,6 @@
                 width="100%"
                 height="100%"
                 :src="product.data.image[0]"
-                :error="src='../assets/noimage.png'"
                 preserveAspectRatio="xMidYMid slice"
                 alt="image not available"
                 :id="index"
