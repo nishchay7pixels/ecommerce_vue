@@ -1,7 +1,6 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
-import Home from '../views/Home.vue'
-import Products from '../views/Products.vue'
+
 import { fb } from '../firebase';
 
 
@@ -9,13 +8,17 @@ Vue.use(VueRouter)
 
 const routes = [
   {
+    path: "*",
+    component: { render: (h) => h("div", ["404! Page Not Found!"]) },
+  },
+  {
     path: '/',
     redirect: '/home'
   },
   {
     path: '/home',
     name: 'Home',
-    component: Home
+    component: () => import(/* webpackChunkName: "home" */ '../views/Home.vue')
   },
   {
     path: '/about',
@@ -31,7 +34,16 @@ const routes = [
     // route level code-splitting
     // this generates a separate chunk (about.[hash].js) for this route
     // which is lazy-loaded when the route is visited.
-    component: Products
+    component: () => import(/* webpackChunkName: "products" */ '../views/Products.vue')
+  },
+  {
+    path: "/productdetail/:id",
+    name: 'ProductDetails',
+    props: true,
+    // route level code-splitting
+    // this generates a separate chunk (about.[hash].js) for this route
+    // which is lazy-loaded when the route is visited.
+    component: () => import(/* webpackChunkName: "products" */ '../views/ProductDetails.vue')
   },
   {
     path: '/checkout',
@@ -39,7 +51,7 @@ const routes = [
     // route level code-splitting
     // this generates a separate chunk (about.[hash].js) for this route
     // which is lazy-loaded when the route is visited.
-    component: () => import(/* webpackChunkName: "about" */ '../views/Checkout.vue')
+    component: () => import(/* webpackChunkName: "checkout" */ '../views/Checkout.vue')
   },
   {
     path: '/admin',
@@ -49,7 +61,7 @@ const routes = [
     // route level code-splitting
     // this generates a separate chunk (about.[hash].js) for this route
     // which is lazy-loaded when the route is visited.
-    component: () => import(/* webpackChunkName: "about" */ '../views/Admin.vue'),
+    component: () => import(/* webpackChunkName: "admin" */ '../views/Admin.vue'),
     children: [
       {
         path: 'overview',

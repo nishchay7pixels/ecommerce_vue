@@ -27,12 +27,14 @@
                     <!-- <button type="button" class="btn btn-sm btn-outline-danger">
                       View
                     </button> -->
-                    <add-to-cart 
+                    <add-to-cart
+                      :_buttonclass="'btn btn-primary'"
                       :name="product.data.name"
-                      :price="product.data.price"
+                      :price="product.data.price.toString()"
                       :pid="product.id"
                       :image="product.data.image[0]"
-                      :quantity="quantity">
+                      :quantity="quantity"
+                    >
                     </add-to-cart>
                   </div>
                 </div>
@@ -54,7 +56,7 @@ export default {
   data() {
     return {
       products: [],
-      quantity: "1"
+      quantity: "1",
     };
   },
   created() {
@@ -66,7 +68,7 @@ export default {
         .get()
         .then((querySnapshot) => {
           querySnapshot.forEach((element) => {
-            this.products.push({id:element.id , data:element.data()});
+            this.products.push({ id: element.id, data: element.data() });
             console.log(element.id);
           });
         });
