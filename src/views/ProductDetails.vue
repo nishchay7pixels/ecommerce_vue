@@ -192,7 +192,8 @@ export default {
 </script>
 <style scoped>
 .gallery-wrap .img-big-wrap img {
-  height: 450px;
+  height: auto;
+  max-height:450px;
   width: auto;
   display: inline-block;
   cursor: zoom-in;
