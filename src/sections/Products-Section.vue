@@ -11,7 +11,8 @@
         </section>
         <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
           <div class="col" v-for="(product, index) in products" :key="index">
-            <div class="card shadow-sm">
+            <product-card :product="product"></product-card>
+            <!-- <div class="card shadow-sm">
               <img
                 class="bd-placeholder-img card-img-top"
                 width="100%"
@@ -24,9 +25,6 @@
                 <p class="card-text">Price: ${{ product.data.price }}</p>
                 <div class="d-flex justify-content-center align-items-center">
                   <div class="btn-group">
-                    <!-- <button type="button" class="btn btn-sm btn-outline-danger">
-                      View
-                    </button> -->
                     <view-button :itemid="product.id" />
                     <add-to-cart
                       :_buttonclass="'btn btn-primary'"
@@ -40,7 +38,7 @@
                   </div>
                 </div>
               </div>
-            </div>
+            </div> -->
           </div>
         </div>
       </div>
@@ -48,11 +46,10 @@
   </main>
 </template>
 <script>
-import AddToCart from "../components/AddToCart.vue";
-import ViewButton from "../components/ViewButton.vue";
 import { db } from "../firebase";
+import ProductCard from "../components/ProductCard.vue"
 export default {
-  components: { AddToCart, ViewButton },
+  components: {ProductCard },
   name: "Product-section",
   props: {},
   data() {
@@ -67,6 +64,7 @@ export default {
   methods: {
     getProducts() {
       db.collection("Products")
+        .limit(10)
         .get()
         .then((querySnapshot) => {
           querySnapshot.forEach((element) => {

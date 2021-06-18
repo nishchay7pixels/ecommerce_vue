@@ -11,49 +11,7 @@
       <div class="container">
         <div class="row row-cols-1 row-cols-sm-1 row-cols-md-3 g-2">
           <div class="col-sm" v-for="(product, index) in products" :key="index">
-            <div class="card shadow-sm">
-              <img
-                v-if="Array.isArray(product.data.image)"
-                class="bd-placeholder-img card-img-top"
-                width="100%"
-                height="100%"
-                :src="product.data.image[0]"
-                preserveAspectRatio="xMidYMid slice"
-                alt="image not available"
-                :id="index"
-              />
-              <div class="card-body">
-                <h5>{{ product.data.name }}</h5>
-                <p class="card-text">{{ product.data.description }}</p>
-                <div class="d-flex justify-content-between align-items-center">
-                  <div class="btn-group">
-                    <div>
-                      <view-button :itemid="product.id" />
-                    </div>
-                    <div>
-                      <add-to-cart
-                        :_buttonclass="'btn btn-primary'"
-                        :name="product.data.name"
-                        :price="product.data.price.toString()"
-                        :pid="product.id"
-                        :image="
-                          Array.isArray(product.data.image)
-                            ? product.data.image[0]
-                            : null
-                        "
-                        :quantity="quantity"
-                      >
-                      </add-to-cart>
-                    </div>
-                  </div>
-                  <small class="text-muted"
-                    ><b
-                      ><h5>Price: ${{ product.data.price }}</h5></b
-                    ></small
-                  >
-                </div>
-              </div>
-            </div>
+            <product-card :product="product"></product-card>
           </div>
         </div>
       </div>
@@ -62,9 +20,8 @@
 </template>
 <script>
 import { db } from "../firebase";
-import AddToCart from "../components/AddToCart.vue";
-import ViewButton from "../components/ViewButton.vue";
 import FilterPanel from "../components/FilterPanel.vue";
+import ProductCard from "../components/ProductCard.vue";
 export default {
   name: "Product",
   data() {
@@ -75,16 +32,14 @@ export default {
     };
   },
   components: {
-    AddToCart,
     FilterPanel,
-    ViewButton,
+    ProductCard,
   },
   props: {},
   created() {
     this.getAll();
   },
   methods: {
-    
     getAll() {
       (this.products = []),
         db
