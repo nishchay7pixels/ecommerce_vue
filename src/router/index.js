@@ -8,6 +8,10 @@ Vue.use(VueRouter)
 
 const routes = [
   {
+    path: "*",
+    component: { render: (h) => h("div", ["404! Page Not Found!"]) },
+  },
+  {
     path: '/',
     redirect: '/home'
   },
@@ -31,6 +35,15 @@ const routes = [
     // this generates a separate chunk (about.[hash].js) for this route
     // which is lazy-loaded when the route is visited.
     component: () => import(/* webpackChunkName: "products" */ '../views/Products.vue')
+  },
+  {
+    path: "/productdetail/:id",
+    name: 'ProductDetails',
+    props: true,
+    // route level code-splitting
+    // this generates a separate chunk (about.[hash].js) for this route
+    // which is lazy-loaded when the route is visited.
+    component: () => import(/* webpackChunkName: "products" */ '../views/ProductDetails.vue')
   },
   {
     path: '/checkout',
