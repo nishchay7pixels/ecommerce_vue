@@ -97,7 +97,7 @@ export default {
       this.products = [];
       db.collection("Products")
         .where("gender", "==", gender) // men women pride
-        .where("new_arrival", "==", true) // men women pride
+        .where("is_new", "==", true) // men women pride
         .where("price", "<=", parseFloat(price))
         .orderBy("price", orderBy == "desc" ? "desc" : "asc")
         .limit(20)
