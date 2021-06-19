@@ -35,23 +35,28 @@
 ## Introduction
 I am building a fullscale ecommerce application which can be used by business (small/large) to develop and launch their own online store.
 
-It is built in a developer friendly manner with everything ready, packed and set for developers to modify and use.
+The aim is to build it in a developer friendly manner with everything ready, packed and set for developers to modify and use.
 
 ## My Mission
 To create a safe and easy way to build and online ecommerce store.
 
 ## To-do
 
-- [ ] Create product info page
-- [ ] Add products to product page
-- [ ] Setup filters in Product Page using tags
-- [ ] Setup checkout and payments using PayU gateway
-- [ ] Create Admin/Orders component to display current orders
-- [ ] Store all the orders use make and transactiond details
-- [ ] Crete 404 Error page
-- [ ] Create logout error page
-- [ ] Create Customer checkout form for storing customer details
-
+- [X] Development : Create product info page
+- [X] Development : Add products to product page
+- [X] Development : Setup filters in Product Page using tags
+- [ ] Development : Setup checkout and payments using PayU gateway
+- [ ] Development : Create Admin/Orders component to display current orders
+- [ ] Development : Store all the orders use make and transactiond details
+- [ ] Development : Create 404 Error page
+- [ ] Development : Create logout error page
+- [ ] Development : Create Customer checkout form for storing customer details
+- [ ] Development : Load product page as per the option(gender) selected in NavBar
+- [ ] Development : Display success alert when product added to cart.
+- [ ] Development : Product suggestion section.
+- [ ] Fix : Banner image exceeds overlay on Home Screen
+- [ ] Fix : Checkout screen alignment in mobile view
+- [ ] ReadMe : Add firebase setup steps in readme
 
 
 <br>
