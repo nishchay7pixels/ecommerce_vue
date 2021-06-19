@@ -8,8 +8,9 @@ Vue.use(VueRouter)
 
 const routes = [
   {
-    path: "*",
-    component: { render: (h) => h("div", ["404! Page Not Found!"]) },
+    path: '*',
+    name: 'Error',
+    component: () => import(/* webpackChunkName: "error-404" */ '../views/Error.vue')
   },
   {
     path: '/',
