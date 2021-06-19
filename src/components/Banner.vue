@@ -5,7 +5,7 @@
     <div class="banner">
       <div class="banner-1"></div>
       <div class="banner-text col-md-5 p-lg-5 mx-auto my-5">
-        <h1 class="display-4 fw-normal">Ecommerce for Developers</h1>
+        <h1 class="display-5 fw-normal">Ecommerce for Developers</h1>
         <p class="lead fw-normal">
           An ecommerce store for the developers community by the developers
           community.
