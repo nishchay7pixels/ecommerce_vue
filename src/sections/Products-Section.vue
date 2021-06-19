@@ -1,19 +1,23 @@
 <template>
   <main>
-    <div class="album py-5 bg-light">
-      <div class="container">
-        <section class="py-5 text-center container">
-          <div class="row py-lg-5">
-            <div class="col-lg-6 col-md-8 mx-auto">
-              <h1 class="fw-light">Exclusive Deals</h1>
-            </div>
-          </div>
-        </section>
-        <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
-          <div class="col" v-for="(product, index) in products" :key="index">
-            <product-card :product="product"></product-card>
+    <div class="album container py-1 d-grid gap-1">
+      <section class="py-1 text-center">
+        <div class="row py-lg-1">
+          <div class="col-lg-6 col-md-8 mx-auto">
+            <h2 class="fw-light"><b>Exclusive Deals</b></h2>
           </div>
         </div>
+      </section>
+      <div class="row row-cols-1 row-cols-sm-1 row-cols-md-2 row-cols-lg-3 g-3">
+        <div class="col " v-for="(product, index) in products" :key="index">
+          <product-card :product="product"></product-card>
+        </div>
+      </div>
+
+      <div class="container d-grid">
+        <router-link to="/products" class="btn btn-outline-primary" href="#">
+          <i class="fas fa-sort-down"></i>
+        </router-link>
       </div>
     </div>
   </main>
@@ -37,7 +41,7 @@ export default {
   methods: {
     getProducts() {
       db.collection("Products")
-        .limit(10)
+        .limit(9)
         .get()
         .then((querySnapshot) => {
           querySnapshot.forEach((element) => {

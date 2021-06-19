@@ -62,7 +62,11 @@ export default {
           payload.priceMax,
           payload.orderBy
         );
-      } else {
+      } 
+      else if(payload.category == "All"){
+        this.getAllFor(payload.gender,payload.priceMax,payload.orderBy);
+      }
+      else {
         this.getFor(
           payload.gender,
           payload.category.toLowerCase(),
@@ -93,7 +97,7 @@ export default {
       this.products = [];
       db.collection("Products")
         .where("gender", "==", gender) // men women pride
-        .where("new_arrival", "==", true) // men women pride
+        .where("is_new", "==", true) // men women pride
         .where("price", "<=", parseFloat(price))
         .orderBy("price", orderBy == "desc" ? "desc" : "asc")
         .limit(20)
@@ -105,6 +109,21 @@ export default {
         });
       console.log(this.products);
     },
+    getAllFor(gender,price,orderBy){
+      this.products = [];
+      db.collection("Products")
+        .where("gender", "==", gender) // men women pride
+        .where("price", "<=", parseFloat(price))
+        .orderBy("price", orderBy == "desc" ? "desc" : "asc")
+        .limit(20)
+        .get()
+        .then((querySnapshot) => {
+          querySnapshot.forEach((element) => {
+            this.products.push({ id: element.id, data: element.data() });
+          });
+        });
+      console.log(this.products);
+    }
   },
 };
 </script>

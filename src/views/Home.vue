@@ -3,7 +3,6 @@
   <Navbar/>
   <div class="home">
     <Banner></Banner>
-    <div class="b-example-divider"></div>
     <About-section></About-section>
     <Product-section></Product-section>
   </div>
