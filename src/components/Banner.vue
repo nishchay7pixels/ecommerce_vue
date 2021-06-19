@@ -1,28 +1,20 @@
 <template>
-  <div
-    class="
-      position-relative
-      overflow-hidden
-      p-3 p-md-5
-      m-md-3
-      text-center
-      bg-light
-    "
-  >
-    <div class="col-md-5 p-lg-5 mx-auto my-5">
-      <h1 class="display-4 fw-normal">Ecommerce for Developers</h1>
-      <p class="lead fw-normal">
-        An ecommerce store for the developers community by the developers
-        community.
-      </p>
-      <router-link to="/products" class="btn btn-primary" href="#"
-        >Shop</router-link
-      >
+  <div>
+    <div class="overlay"></div>
+
+    <div class="banner">
+      <div class="banner-1"></div>
+      <div class="banner-text col-md-5 p-lg-5 mx-auto my-5">
+        <h1 class="display-4 fw-normal">Ecommerce for Developers</h1>
+        <p class="lead fw-normal">
+          An ecommerce store for the developers community by the developers
+          community.
+        </p>
+        <router-link to="/products" class="btn btn-lg btn-primary" href="#"
+          >Shop Now</router-link
+        >
+      </div>
     </div>
-    <div class="product-device shadow-sm d-none d-md-block"></div>
-    <div
-      class="product-device product-device-2 shadow-sm d-none d-md-block"
-    ></div>
   </div>
 </template>
 
@@ -39,68 +31,95 @@ export default {
   max-width: 960px;
 }
 
-/*
- * Custom translucent site header
- */
-
-.site-header {
-  background-color: rgba(0, 0, 0, 0.85);
-  -webkit-backdrop-filter: saturate(180%) blur(20px);
-  backdrop-filter: saturate(180%) blur(20px);
-}
-.site-header a {
-  color: #8e8e8e;
-  transition: color 0.15s ease-in-out;
-}
-.site-header a:hover {
-  color: #fff;
-  text-decoration: none;
-}
-
-/*
- * Dummy devices (replace them with your own or something else entirely!)
- */
-
-.product-device {
-  position: absolute;
-  right: 10%;
-  bottom: -30%;
-  width: 300px;
-  height: 540px;
-  background-color: #333;
-  border-radius: 21px;
-  transform: rotate(30deg);
-}
-
-.product-device::before {
-  position: absolute;
-  top: 10%;
-  right: 10px;
-  bottom: 10%;
-  left: 10px;
-  content: "";
-  background-color: rgba(255, 255, 255, 0.1);
-  border-radius: 5px;
-}
-
-.product-device-2 {
-  top: -25%;
-  right: auto;
-  bottom: 0;
-  left: 5%;
-  background-color: #e5e5e5;
-}
-
-/*
- * Extra utilities
- */
-
 .flex-equal > * {
   flex: 1;
 }
 @media (min-width: 768px) {
   .flex-md-equal > * {
     flex: 1;
+  }
+}
+
+.overlay {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  z-index: 2;
+  background-color: #080d15;
+  opacity: 0.7;
+}
+
+.btn.btn-lg {
+  padding: 10px 40px;
+}
+.btn.btn-hero,
+.btn.btn-hero:hover,
+.btn.btn-hero:focus {
+  color: #f5f5f5;
+  background-color: #1abc9c;
+  border-color: #1abc9c;
+  outline: none;
+  margin: 20px auto;
+}
+
+.banner-text {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  z-index: 3;
+  color: #fff;
+  text-align: center;
+  text-transform: uppercase;
+  text-shadow: 1px 1px 0 rgba(0, 0, 0, 0.75);
+  -webkit-transform: translate3d(-50%, -50%, 0);
+  -moz-transform: translate3d(-50%, -50%, 0);
+  -ms-transform: translate3d(-50%, -50%, 0);
+  -o-transform: translate3d(-50%, -50%, 0);
+  transform: translate3d(-50%, -50%, 0);
+}
+.banner-text h1 {
+  font-size: 6em;
+  font-weight: bold;
+  margin: 0;
+  padding: 0;
+}
+
+.banner .banner-1,
+.banner .banner-2,
+.banner .banner-3 {
+  height: 100vh;
+  background-size: cover;
+  background-position: center center;
+  background-repeat: no-repeat;
+}
+.banner .banner-2 {
+  background-image: url(https://ununsplash.imgix.net/photo-1416339134316-0e91dc9ded92?q=75&fm=jpg&s=883a422e10fc4149893984019f63c818);
+}
+.banner .banner-1 {
+  background-image: url(../assets/banner-background.jpg);
+}
+
+/********************************/
+/*          Media Queries       */
+/********************************/
+@media screen and (min-width: 980px) {
+  .banner-text {
+    width: 980px;
+  }
+}
+@media screen and (min-width: 640px) and (max-width: 980px) {
+  .banner-text {
+    width: 640px;
+  }
+}
+@media screen and (max-width: 640px) {
+  .banner-text h1 {
+    font-size: 4em;
+  }
+}
+@media screen and (max-width: 480px) {
+  .banner-text h1 {
+    font-size: 3em;
   }
 }
 </style>

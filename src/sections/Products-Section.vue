@@ -1,6 +1,6 @@
 <template>
   <main>
-    <div class="album py-5 bg-light">
+    <div class="album py-5 bg-light d-grid gap-1">
       <div class="container">
         <section class="py-5 text-center container">
           <div class="row py-lg-5">
@@ -14,6 +14,11 @@
             <product-card :product="product"></product-card>
           </div>
         </div>
+      </div>
+      <div class="container d-grid">
+        <router-link to="/products" class="btn btn-outline-primary" href="#" >
+          <i class="fas fa-sort-down"></i>
+        </router-link>
       </div>
     </div>
   </main>
@@ -37,7 +42,7 @@ export default {
   methods: {
     getProducts() {
       db.collection("Products")
-        .limit(10)
+        .limit(9)
         .get()
         .then((querySnapshot) => {
           querySnapshot.forEach((element) => {

@@ -2,7 +2,7 @@
   <div class="nav">
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
       <div class="container-fluid">
-        <a class="navbar-brand" href="#">ECommerce</a>
+        <router-link  to="/home" class="navbar-brand" href="#">Shopin-io</router-link>
         <button
           class="navbar-toggler"
           type="button"
@@ -20,22 +20,18 @@
             style="--bs-scroll-height: 100px"
           >
             <li class="nav-item">
-              <router-link
-                to="/home"
-                class="nav-link"
-                aria-current="page"
-                href="#"
-                >Home</router-link
+              <router-link to="/products" class="nav-link" href="#"
+                >Women</router-link
               >
             </li>
             <li class="nav-item">
               <router-link to="/products" class="nav-link" href="#"
-                >Products</router-link
+                >Men</router-link
               >
             </li>
             <li class="nav-item">
-              <router-link to="/about" class="nav-link" href="#"
-                >About</router-link
+              <router-link to="/products" class="nav-link" href="#"
+                >Pride</router-link
               >
             </li>
           </ul>
@@ -46,11 +42,16 @@
               data-bs-toggle="modal"
               data-bs-target="#loginModal"
             >
-              Login
+             <i class="fas fa-sign-in-alt" aria-hidden="true"></i>
             </button>
-            
-            <button @click="checkout" style="margin-left: 3px;" class="btn btn-secondary"
-              >Checkout</button>
+
+            <button
+              @click="checkout"
+              style="margin-left: 3px"
+              class="btn btn-outline-primary"
+            >
+              <i class="fas fa-shopping-cart"></i>
+            </button>
           </div>
         </div>
       </div>
@@ -70,17 +71,16 @@ export default {
   components: {
     Login,
   },
-  methods:{
-    checkout(){
-      this.$router.push('/checkout');
-    }
-  }
+  methods: {
+    checkout() {
+      this.$router.push("/checkout");
+    },
+  },
 };
 </script>
 <style scoped>
 .nav {
   display: inherit;
 }
-
 </style>
 
