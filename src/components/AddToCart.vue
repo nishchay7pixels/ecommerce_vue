@@ -1,9 +1,12 @@
 <template>
   <div class="add-to-cart">
-    <button :class="_buttonclass" @click="addToCart()"><slot></slot> Add to cart</button>
+    <button :class="_buttonclass" @click="addToCart()">
+      <slot></slot> Add to cart
+    </button>
   </div>
 </template>
 <script>
+import { EventBus } from '../main'
 export default {
   name: "add-to-cart",
   props: {
@@ -11,17 +14,17 @@ export default {
     price: String,
     pid: String,
     image: null,
-    quantity:String,
-    _buttonclass:String
+    quantity: String,
+    _buttonclass: String,
   },
   data() {
     return {
       item: {
-        productId:null,
+        productId: null,
         productPrice: null,
         productName: null,
         productImage: null,
-        productQuantity: null
+        productQuantity: null,
       },
     };
   },
@@ -31,14 +34,15 @@ export default {
       console.log(this.item);
       console.log(this.quantity);
       this.$store.commit("addToCart", this.item);
+      EventBus.$emit('notification-success', "Item added!");
     },
-    setItem(){
-        this.item.productId= this.pid;
-        this.item.productPrice= this.price;
-        this.item.productName= this.name;
-        this.item.productImage= this.image;
-        this.item.productQuantity= this.quantity;
-    }
+    setItem() {
+      this.item.productId = this.pid;
+      this.item.productPrice = this.price;
+      this.item.productName = this.name;
+      this.item.productImage = this.image;
+      this.item.productQuantity = this.quantity;
+    },
   },
 };
 </script>

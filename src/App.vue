@@ -1,13 +1,14 @@
 <template>
   <div id="app">
     <router-view/>
+    <notification></notification>
   </div>
 </template>
 <script>
-
+import Notification from './components/Notification.vue';
 export default({
   components:{
-    
+    Notification
   }
 })
 </script>

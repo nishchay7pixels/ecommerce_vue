@@ -96,9 +96,11 @@
       <i class="fas fa-shopping-cart fa-3x"></i>
       <h1>Cart Empty</h1>
     </div>
+    
   </div>
 </template>
 <script>
+import { EventBus } from '../main'
 export default {
   name: "Checkout",
   data() {
@@ -136,6 +138,7 @@ export default {
       this.total = this.total - parseFloat(item.productPrice);
       this.totalQuantity = this.totalQuantity - 1;
       this.checkQuantity();
+      EventBus.$emit('notification-error', "Item deleted!");
     },
     calculateTotalQuantity() {
       this.cart.forEach((item) => {
