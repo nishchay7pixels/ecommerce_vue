@@ -61,7 +61,7 @@
                     v-model="gender"
                     :disabled="!applyfilter"
                   >
-                    <option value="male" selected>Male</option>
+                    <option value="male">Male</option>
                     <option value="female">Female</option>
                     <option value="pride">Pride</option>
                   </select>
@@ -188,9 +188,10 @@ export default {
     return {
       gender: "male",
       priceMax: 1500,
-      maleCategoryList: ["New Arrival", "Deals", "T-shirts", "Shirts", "Jeans", "Beauty"],
+      maleCategoryList: ["New Arrival", "All", "Deals", "T-shirts", "Shirts", "Jeans", "Beauty"],
       femaleCategoryList: [
         "New Arrival",
+        "All", 
         "Deals",
         "Tops & T-shirts",
         "Shirts & Blouse",
@@ -199,6 +200,7 @@ export default {
       ],
       prideCategoryList: [
         "New Arrival",
+        "All", 
         "Deals",
         "Tops & T-shirts",
         "Shirts & Blouse",
@@ -206,7 +208,7 @@ export default {
         "Dresses",
         "Beauty"
       ],
-      category: "New Arrival",
+      category: "All",
       orderBy: "desc",
       applyfilter: false,
     };
