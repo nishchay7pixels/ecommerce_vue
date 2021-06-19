@@ -54,6 +54,7 @@ To create a safe and easy way to build and online ecommerce store.
 - [ ] Development : Load product page as per the option(gender) selected in NavBar
 - [ ] Development : Display success alert when product added to cart.
 - [ ] Development : Product suggestion section.
+- [ ] Development : User profile screens and sign-in functionality for user
 - [ ] Development : Store users recently viewed orders
 - [ ] Fix : Banner image exceeds overlay on Home Screen
 - [X] Fix : Checkout screen alignment in mobile view
