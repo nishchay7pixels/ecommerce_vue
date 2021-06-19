@@ -52,6 +52,7 @@ To create a safe and easy way to build and online ecommerce store.
 - [ ] Development : Create logout error page
 - [ ] Development : Create Customer checkout form for storing customer details
 - [ ] Development : Load product page as per the option(gender) selected in NavBar
+- [ ] Development : Display success alert when product added to cart.
 - [ ] Fix : Banner image exceeds overlay on Home Screen
 - [ ] Fix : Checkout screen alignment in mobile view
 - [ ] ReadMe : Add firebase setup steps in readme
