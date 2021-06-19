@@ -35,7 +35,7 @@
 ## Introduction
 I am building a fullscale ecommerce application which can be used by business (small/large) to develop and launch their own online store.
 
-It is built in a developer friendly manner with everything ready, packed and set for developers to modify and use.
+The aim is to build it in a developer friendly manner with everything ready, packed and set for developers to modify and use.
 
 ## My Mission
 To create a safe and easy way to build and online ecommerce store.
