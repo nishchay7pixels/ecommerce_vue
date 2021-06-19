@@ -42,16 +42,19 @@ To create a safe and easy way to build and online ecommerce store.
 
 ## To-do
 
-- [X] Create product info page
-- [X] Add products to product page
-- [X] Setup filters in Product Page using tags
-- [ ] Setup checkout and payments using PayU gateway
-- [ ] Create Admin/Orders component to display current orders
-- [ ] Store all the orders use make and transactiond details
-- [ ] Crete 404 Error page
-- [ ] Create logout error page
-- [ ] Create Customer checkout form for storing customer details
-
+- [X] Development : Create product info page
+- [X] Development : Add products to product page
+- [X] Development : Setup filters in Product Page using tags
+- [ ] Development : Setup checkout and payments using PayU gateway
+- [ ] Development : Create Admin/Orders component to display current orders
+- [ ] Development : Store all the orders use make and transactiond details
+- [ ] Development : Create 404 Error page
+- [ ] Development : Create logout error page
+- [ ] Development : Create Customer checkout form for storing customer details
+- [ ] Development : Load product page as per the option(gender) selected in NavBar
+- [ ] Fix : Banner image exceeds overlay on Home Screen
+- [ ] Fix : Checkout screen alignment in mobile view
+- [ ] ReadMe : Add firebase setup steps in readme
 
 
 <br>
