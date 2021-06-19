@@ -4,37 +4,39 @@
     <div class="container">
       <br />
       <div class="row">
-        <div class="col-8">
+        <div class="col-md-8 col-sm-12">
           <div class="header"><h4>Cart Items</h4></div>
-          <table class="table">
-            <thead>
-              <tr class="row">
-                <th class="col-2"></th>
-                <th class="col-4">Name</th>
-                <th class="col-2">Price</th>
-                <th class="col-2">Quantity</th>
-                <th class="col-2"></th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr v-for="(product, index) in cart" class="row" :key="index">
-                <td class="col-2">
-                  <img :src="product.productImage" style="width: 50px" />
-                </td>
-                <td class="col-4">{{ product.productName }}</td>
-                <td class="col-2">{{ product.productPrice }}</td>
-                <td class="col-2">{{ product.productQuantity }}</td>
-                <td class="col-2">
-                  <button
-                    @click="deleteProduct(product)"
-                    class="btn btn-danger"
-                  >
-                    Delete
-                  </button>
-                </td>
-              </tr>
-            </tbody>
-          </table>
+          <div class="row-cols-sm-1 row-cols-md-2 g-3">
+            <table class="table">
+              <thead>
+                <tr class="row">
+                  <th class="col-2"></th>
+                  <th class="col-4">Name</th>
+                  <th class="col-2">Price</th>
+                  <th class="col-2">Quantity</th>
+                  <th class="col-2"></th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr v-for="(product, index) in cart" class="row" :key="index">
+                  <td class="col-2">
+                    <img :src="product.productImage" style="width: 50px" />
+                  </td>
+                  <td class="col-4">{{ product.productName }}</td>
+                  <td class="col-2">{{ product.productPrice }}</td>
+                  <td class="col-2">{{ product.productQuantity }}</td>
+                  <td class="col-2">
+                    <button
+                      @click="deleteProduct(product)"
+                      class="btn btn-danger"
+                    >
+                      Delete
+                    </button>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
         </div>
         <div class="col">
           <div class="container bill-layout">
@@ -131,7 +133,7 @@ export default {
       this.cart.forEach((item) => {
         this.total =
           this.total +
-          parseInt(item.productQuantity) * parseInt(item.productPrice);
+          parseFloat(item.productQuantity) * parseFloat(item.productPrice);
       });
     },
   },
