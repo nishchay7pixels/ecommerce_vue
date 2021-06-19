@@ -1,7 +1,7 @@
 <template>
   <div class="checkout">
     <Navbar />
-    <div class="container">
+    <div class="container" v-if="!emptyCart">
       <br />
       <div class="row">
         <div class="col-md-8 col-sm-12">
@@ -92,6 +92,10 @@
         </div>
       </div>
     </div>
+    <div class="container center" v-if="emptyCart">
+      <i class="fas fa-shopping-cart fa-3x"></i>
+      <h1>Cart Empty</h1>
+    </div>
   </div>
 </template>
 <script>
@@ -101,7 +105,8 @@ export default {
     return {
       cart: [],
       total: null,
-      totalQuantity: null,
+      totalQuantity: 0,
+      emptyCart : true
     };
   },
   created() {
@@ -109,8 +114,16 @@ export default {
     this.cart = this.$store.state.cart;
     this.calculateTotalPrice();
     this.calculateTotalQuantity();
+    this.checkQuantity();
   },
   methods: {
+    checkQuantity(){
+      if(this.totalQuantity==0){
+        this.emptyCart = true;
+      }else{
+        this.emptyCart = false;
+      }
+    },
     deleteProduct(item) {
       if (parseInt(item.productQuantity) - 1 == 0) {
         this.$store.commit("deleteFromCart", item.productId);
@@ -120,8 +133,9 @@ export default {
         );
         this.cart[index].productQuantity = this.cart[index].productQuantity - 1;
       }
-      this.total = this.total - parseInt(item.productPrice);
+      this.total = this.total - parseFloat(item.productPrice);
       this.totalQuantity = this.totalQuantity - 1;
+      this.checkQuantity();
     },
     calculateTotalQuantity() {
       this.cart.forEach((item) => {
@@ -147,5 +161,9 @@ export default {
   height: auto;
   border: 2px solid #afafaf;
   background: #d9dbda;
+}
+.center {
+  padding: 70px 0;
+  text-align: center;
 }
 </style>
