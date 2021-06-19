@@ -55,7 +55,7 @@ To create a safe and easy way to build and online ecommerce store.
 - [ ] Development : Display success alert when product added to cart.
 - [ ] Development : Product suggestion section.
 - [ ] Fix : Banner image exceeds overlay on Home Screen
-- [ ] Fix : Checkout screen alignment in mobile view
+- [X] Fix : Checkout screen alignment in mobile view
 - [ ] ReadMe : Add firebase setup steps in readme
 
 
