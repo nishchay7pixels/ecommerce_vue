@@ -57,7 +57,7 @@ To create a safe and easy way to build and online ecommerce store.
 - [ ] Development : User profile screens and sign-in functionality for user
 - [ ] Development : Store users recently viewed orders
 - [ ] Development : Display Actual price and discounted price
-- [ ] Fix : Banner image exceeds overlay on Home Screen
+- [X] Fix : Banner image exceeds overlay on Home Screen
 - [X] Fix : Checkout screen alignment in mobile view
 - [ ] ReadMe : Add firebase setup steps in readme
 
