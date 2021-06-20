@@ -1,4 +1,5 @@
 <template>
+<div>
   <main>
     <div class="album container py-1 d-grid gap-1">
       <section class="py-1 text-center">
@@ -8,8 +9,8 @@
           </div>
         </div>
       </section>
-      <div class="row row-cols-1 row-cols-sm-1 row-cols-md-2 row-cols-lg-3 g-3">
-        <div class="col " v-for="(product, index) in products" :key="index">
+      <div class="row row-cols-2 row-cols-sm-2 row-cols-md-2 row-cols-lg-4 g-3">
+        <div class="col" v-for="(product, index) in products" :key="index">
           <product-card :product="product"></product-card>
         </div>
       </div>
@@ -21,12 +22,20 @@
       </div>
     </div>
   </main>
+  <product-carousel
+    :title="'New Arrival'"
+    :searchField="'is_new'"
+    :value="true"
+  ></product-carousel>
+</div>
 </template>
 <script>
 import { db } from "../firebase";
 import ProductCard from "../components/ProductCard.vue";
+import ProductCarousel from "../components/ProductCarousel.vue";
+
 export default {
-  components: { ProductCard },
+  components: { ProductCard, ProductCarousel },
   name: "Product-section",
   props: {},
   data() {
@@ -41,7 +50,7 @@ export default {
   methods: {
     getProducts() {
       db.collection("Products")
-        .limit(9)
+        .limit(8)
         .get()
         .then((querySnapshot) => {
           querySnapshot.forEach((element) => {

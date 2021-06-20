@@ -9,7 +9,7 @@
         ></filter-panel>
       </div>
       <div class="container">
-        <div class="row row-cols-1 row-cols-sm-1 row-cols-md-3 g-2">
+        <div class="row row-cols-2 row-cols-sm-2 row-cols-md-3 g-2">
           <div class="col-sm" v-for="(product, index) in products" :key="index">
             <product-card :product="product"></product-card>
           </div>

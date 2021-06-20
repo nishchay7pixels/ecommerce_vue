@@ -11,12 +11,13 @@
         alt="image not available"
       />
       <div class="card-body">
-        <h5>{{ product.data.name }}</h5>
-        <p class="card-text">{{ product.data.description }}</p>
+        <p>{{ product.data.name }}</p>
         <div class="d-flex justify-content-between align-items-center">
           <div class="btn-group">
             <div>
-              <view-button :itemid="product.id" />
+              <view-button 
+              :itemid="product.id" 
+              :_buttontext="View"><i class="fa fa-expand" aria-hidden="true"></i></view-button>
             </div>
             <div>
               <add-to-cart
@@ -30,13 +31,13 @@
                     : null
                 "
                 :quantity="quantity"
-              >
+              ><i class="fa fa-shopping-cart" aria-hidden="true"></i>
               </add-to-cart>
             </div>
           </div>
           <small class="text-muted"
             ><b
-              ><h5>Price: ${{ product.data.price }}</h5></b
+              ><p>Price: ${{ product.data.price }}</p></b
             ></small
           >
         </div>

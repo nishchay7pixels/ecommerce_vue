@@ -2,10 +2,10 @@
   <div class="view-button">
     <button
       type="button"
-      class="btn btn-outline-primary"
+      :class="_buttonclass==''?_buttonclass:'btn btn-outline-primary'"
       @click="viewDetails()"
     >
-      View
+      <slot></slot>{{_buttontext}}
     </button>
   </div>
 </template>
@@ -13,7 +13,9 @@
 export default {
   name: "view-button",
   props: {
-       itemid:String
+       itemid:String,
+       _buttontext:String,
+       _buttonclass:String
   },
   data() {
     return {

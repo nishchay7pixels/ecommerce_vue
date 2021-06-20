@@ -1,7 +1,7 @@
 <template>
   <div class="add-to-cart">
     <button :class="_buttonclass" @click="addToCart()">
-      <slot></slot> Add to cart
+      <slot></slot>{{_buttontext}}
     </button>
   </div>
 </template>
@@ -16,6 +16,7 @@ export default {
     image: null,
     quantity: String,
     _buttonclass: String,
+    _buttontext:String
   },
   data() {
     return {

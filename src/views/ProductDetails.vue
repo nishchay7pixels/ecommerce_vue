@@ -118,6 +118,7 @@
                 <hr />
                 <add-to-cart
                   :_buttonclass="'btn btn btn-outline-primary text-uppercase'"
+                  :_buttontext="'Add to Cart'"
                   :name="product.name"
                   :price="product.price.toString()"
                   :pid="this.id"
