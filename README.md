@@ -38,7 +38,7 @@ I am building a fullscale ecommerce application which can be used by business (s
 The aim is to build it in a developer friendly manner with everything ready, packed and set for developers to modify and use.
 
 ## My Mission
-To create a safe and easy way to build and online ecommerce store.
+To create a safe and easy way to build an online ecommerce store.
 
 ## To-do
 
@@ -57,7 +57,8 @@ To create a safe and easy way to build and online ecommerce store.
 - [ ] Development : User profile screens and sign-in functionality for user
 - [ ] Development : Store users recently viewed orders
 - [ ] Development : Display Actual price and discounted price
-- [ ] Fix : Banner image exceeds overlay on Home Screen
+- [ ] Development : Implement OAuth2 for login 
+- [X] Fix : Banner image exceeds overlay on Home Screen
 - [X] Fix : Checkout screen alignment in mobile view
 - [ ] ReadMe : Add firebase setup steps in readme
 
