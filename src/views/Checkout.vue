@@ -42,7 +42,7 @@
           <div class="container bill-layout">
             <div class="body">
               <h4 style="margin-top: ">
-                Subtotal({{ totalQuantity }} items): ${{ total }}
+                Subtotal({{ totalQuantity }} items): ${{ total.toFixed(2) }}
               </h4>
               <table class="table">
                 <thead>
@@ -56,9 +56,9 @@
                   <tr style="text-align: left">
                     <td class="col-8"><b>Price</b></td>
                     <td class="col"></td>
-                    <td class="col-2">${{ total }}</td>
+                    <td class="col-2">${{ total.toFixed(2) }}</td>
                   </tr>
-                  <tr style="text-align: left">
+                  <tr style="text-align: left"  v-if="discount!=0">
                     <td class="col-8"><b>Discount</b></td>
                     <td class="col"></td>
                     <td class="col-2">-$0</td>
@@ -73,7 +73,7 @@
                   <tr style="text-align: left">
                     <td class="col-8"><b>Total</b></td>
                     <td class="col"></td>
-                    <td class="col-2">${{ total }}</td>
+                    <td class="col-2">${{ total.toFixed(2) }}</td>
                   </tr>
                 </tfoot>
               </table>
@@ -108,7 +108,8 @@ export default {
       cart: [],
       total: null,
       totalQuantity: 0,
-      emptyCart : true
+      emptyCart : true,
+      discount : 0 //Need to also pass raw_price to calculate it. Skip for now.
     };
   },
   created() {
@@ -150,7 +151,7 @@ export default {
       this.cart.forEach((item) => {
         this.total =
           this.total +
-          parseFloat(item.productQuantity) * parseFloat(item.productPrice);
+          parseInt(item.productQuantity) * parseFloat(item.productPrice);
       });
     },
   },
