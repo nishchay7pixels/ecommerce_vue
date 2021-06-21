@@ -17,7 +17,7 @@
             <div>
               <view-button 
               :itemid="product.id" 
-              :_buttontext="View"><i class="fa fa-expand" aria-hidden="true"></i></view-button>
+              :_buttontext="''"><i class="fa fa-expand" aria-hidden="true"></i></view-button>
             </div>
             <div>
               <add-to-cart
