@@ -35,10 +35,8 @@
               </add-to-cart>
             </div>
           </div>
-          <small class="text-muted"
-            ><b
-              ><p>Price: ${{ product.data.price }}</p></b
-            ></small
+          <small class="text-muted price"
+            ><p><b>${{ product.data.price }}</b> <s>${{ product.data.raw_price }}</s></p></small
           >
         </div>
       </div>
@@ -67,4 +65,7 @@ export default {
 };
 </script>
 <style scoped>
+.price b{
+  color: blue;
+}
 </style>
