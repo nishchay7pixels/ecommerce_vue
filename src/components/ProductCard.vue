@@ -71,8 +71,8 @@ export default {
 .card-notify-year {
         position: absolute;
         right: -10px;
-        top: -20px;
-        background: #ff4444;
+        top: -10px;
+        background: #B42033;
         border-radius: 50%;
         text-align: center;
         color: #fff;      
