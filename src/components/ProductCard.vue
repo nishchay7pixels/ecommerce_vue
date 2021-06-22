@@ -9,7 +9,7 @@
         :src="product.data.image[0]"
         preserveAspectRatio="xMidYMid slice"
         alt="image not available"
-      />
+      /><span class="card-notify-year" v-if="product.data.is_new">New</span>
       <div class="card-body">
         <p>{{ product.data.name }}</p>
         <div class="d-flex justify-content-between align-items-center">
@@ -67,5 +67,18 @@ export default {
 <style scoped>
 .price b{
   color: blue;
+}
+.card-notify-year {
+        position: absolute;
+        right: -10px;
+        top: -20px;
+        background: #ff4444;
+        border-radius: 50%;
+        text-align: center;
+        color: #fff;      
+        font-size: 14px;      
+        width: 50px;
+        height: 50px;    
+        padding: 15px 0 0 0;
 }
 </style>
