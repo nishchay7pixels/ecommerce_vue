@@ -1,5 +1,5 @@
 <template>
-  <div class="products">
+  <div class="products-admin" >
     <h2>Products</h2>
     <br />
     <div class="product-test">
@@ -102,39 +102,23 @@
       </div>
     </div>
     <br /><br />
-    <h3>Product List</h3>
-    <table class="table">
-      <thead>
-        <tr>
-          <th>Name</th>
-          <th>Price</th>
-          <th>Modify</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr v-for="(pro, index) in products" :key="index">
-          <td>{{ pro.data.name }}</td>
-          <td>${{ pro.data.price }}</td>
-          <td>
-            <button @click="editProduct(pro)" class="btn btn-primary">
-              Edit
-            </button>
-            <button @click="deleteProduct(pro.id)" class="btn btn-danger">
-              Delete
-            </button>
-          </td>
-        </tr>
-      </tbody>
-    </table>
+    <product-list-admin
+    v-if="displayList"
+    :productList="products"></product-list-admin>
   </div>
 </template>
 
 <script>
 import { db, fb } from "../firebase";
+import ProductListAdmin from "../components/ProductListAdmin.vue";
+import { EventBus } from '../main'
 export default {
   name: "ProductsAdmin",
   props: {
     msg: String,
+  },
+  components: {
+    ProductListAdmin
   },
   data() {
     return {
@@ -160,12 +144,21 @@ export default {
       },
       products: [],
       tag: "",
+      displayList:false
     };
   },
-  created() {
+  beforeMount(){
     this.resetData();
     this.getAll();
+  },
+  created() {
     this.watcher();
+    EventBus.$on("editProduct", (data) => {
+      this.editProduct(data);
+    });
+    EventBus.$on("deleteProduct", (data) => {
+      this.deleteProduct(data);
+    });
   },
   methods: {
     deleteImage(img, index) {
@@ -302,6 +295,7 @@ export default {
           });
         });
       console.log(this.products);
+      this.displayList = true;
     },
     editProduct(product) {
       this.product.data = product.data;
