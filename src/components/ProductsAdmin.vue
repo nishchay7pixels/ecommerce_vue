@@ -8,7 +8,7 @@
       <div class="form-group">
         <div class="container">
           <div class="row">
-            <div class="col-8">
+            <div class="col-md-8 col-sm-1">
               <input
                 type="text"
                 placeholder="Product Name"
