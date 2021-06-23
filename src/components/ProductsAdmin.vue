@@ -149,6 +149,13 @@ export default {
           tags: [],
           image: [],
           uid: null,
+          id: null,
+          is_new: true,
+          raw_price: "500", //later add another price textbox adjasent to price
+          gender: "male", //later add a drop down for gender selection
+          discount: "43", //calculate discount using price and raw_price
+          currency: "USD",
+          brand: "",
         },
       },
       products: [],
@@ -175,47 +182,47 @@ export default {
         });
     },
     async uploadImage(e) {
-    try{
-      let file = e.target.files[0];
-      if (file) {
-        console.log(file);
-        //var storageRef = fb.storage().ref("productsImage/" + file.name);
-        var storageRef = fb.storage().ref();
-        var imageRef = storageRef.child("productsImage/"+file.name);
-        let uploadTask = imageRef.put(file);
-        uploadTask.on(
-          "state_changed",
-          (snapshot) => {
-            // Observe state change events such as progress, pause, and resume
-            // Get task progress, including the number of bytes uploaded and the total number of bytes to be uploaded
-            var progress =
-              (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
-            console.log("Upload is " + progress + "% done");
-            if (progress == 100) {
-              this.fileuploaded = true;
+      try {
+        let file = e.target.files[0];
+        if (file) {
+          console.log(file);
+          //var storageRef = fb.storage().ref("productsImage/" + file.name);
+          var storageRef = fb.storage().ref();
+          var imageRef = storageRef.child("productsImage/" + file.name);
+          let uploadTask = imageRef.put(file);
+          uploadTask.on(
+            "state_changed",
+            (snapshot) => {
+              // Observe state change events such as progress, pause, and resume
+              // Get task progress, including the number of bytes uploaded and the total number of bytes to be uploaded
+              var progress =
+                (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+              console.log("Upload is " + progress + "% done");
+              if (progress == 100) {
+                this.fileuploaded = true;
+              }
+              switch (snapshot.state) {
+                case fb.storage.TaskState.PAUSED: // or 'paused'
+                  console.log("Upload is paused");
+                  break;
+                case fb.storage.TaskState.RUNNING: // or 'running'
+                  console.log("Upload is running");
+                  break;
+              }
+            },
+            (error) => {
+              console.error(error);
+            },
+            () => {
+              uploadTask.snapshot.ref.getDownloadURL().then((downloadURL) => {
+                let url = downloadURL;
+                console.log(url);
+                this.product.data.image.push("" + url);
+                console.log();
+              });
             }
-            switch (snapshot.state) {
-              case fb.storage.TaskState.PAUSED: // or 'paused'
-                console.log("Upload is paused");
-                break;
-              case fb.storage.TaskState.RUNNING: // or 'running'
-                console.log("Upload is running");
-                break;
-            }
-          },
-          (error) => {
-            console.error(error);
-          },
-          () => {
-            uploadTask.snapshot.ref.getDownloadURL().then((downloadURL) => {
-              let url = downloadURL;
-              console.log(url);
-              this.product.data.image.push("" + url);
-              console.log();
-            });
-          }
-        );
-      }
+          );
+        }
       } catch (error) {
         console.log("ERR ===", error);
         alert("Image uploading failed!");
@@ -238,19 +245,31 @@ export default {
       let user = fb.auth().currentUser;
       this.product.data.uid = user.uid;
       console.log(this.product.data.uid);
-      db.collection("Products").where("uid", "==", this.product.data.uid).onSnapshot((querySnapshot) => {
-        this.products = [];
-        querySnapshot.forEach((doc) => {
-          this.products.push({ id: doc.id, data: doc.data() });
+      db.collection("Products")
+        .where("uid", "==", this.product.data.uid)
+        .onSnapshot((querySnapshot) => {
+          this.products = [];
+          querySnapshot.forEach((doc) => {
+            this.products.push({ id: doc.id, data: doc.data() });
+          });
         });
-      });
     },
     saveData() {
+      db.collection("Products")
+        .orderBy("id")
+        .limitToLast(1)
+        .get()
+        .then((querySnapshot) => {
+          querySnapshot.forEach((element) => {
+            this.product.data.id = element.data().id + 1;
+          });
+        });
       if (
-        this.product.data.name == null ||
-        this.product.data.price == null ||
-        this.product.data.name == "" ||
-        this.product.data.price == ""
+        (this.product.data.name == null ||
+          this.product.data.price == null ||
+          this.product.data.name == "" ||
+          this.product.data.price == "") &&
+        this.product.data.id != null
       ) {
         alert("Enter Required details");
       } else {

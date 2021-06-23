@@ -24,3 +24,6 @@ pnpm-debug.log*
 
 # Firebase config
 /src/firebase.js
+
+#Backup apges
+src/backup
