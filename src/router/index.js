@@ -55,6 +55,14 @@ const routes = [
     component: () => import(/* webpackChunkName: "checkout" */ '../views/Checkout.vue')
   },
   {
+    path: '/logout',
+    name: 'Logout',
+    // route level code-splitting
+    // this generates a separate chunk (about.[hash].js) for this route
+    // which is lazy-loaded when the route is visited.
+    component: () => import(/* webpackChunkName: "checkout" */ '../views/LogoutSuccess.vue')
+  },
+  {
     path: '/admin',
     name: 'Admin',
     meta: { requiresAuth: true },
@@ -89,8 +97,8 @@ const routes = [
 ]
 
 const router = new VueRouter({
-  mode:'history',
-  routes
+  mode: 'history',
+  routes,
 })
 
 //to prevent user to access admin page if not authorized

@@ -114,7 +114,7 @@ export default {
       fb.auth()
         .signOut()
         .then(() => {
-          this.$router.replace("/");
+          this.$router.replace("/logout");
         })
         .catch((err) => {
           console.log(err);
