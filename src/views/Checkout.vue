@@ -79,12 +79,13 @@
               </table>
               <div class="row">
                 <div class="col">
-                  <button
+                  <router-link
                     class="btn btn-primary btn-lg"
                     style="width: 100%; margin-bottom: 10px"
+                    :to="'/place-order'"
                   >
                     Proceed to Buy
-                  </button>
+                  </router-link>
                 </div>
               </div>
             </div>
