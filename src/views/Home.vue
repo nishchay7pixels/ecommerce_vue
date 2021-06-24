@@ -7,6 +7,7 @@
       <product-section></product-section>
       <brands-section></brands-section>
     </div>
+    <Footer />
   </div>
 </template>
 
@@ -15,14 +16,15 @@ import Banner from "../components/Banner.vue";
 //import AboutSection from "../sections/About-Section.vue";
 import ProductSection from "../sections/Products-Section.vue";
 import BrandsSection from "../sections/Brands-Section.vue";
+import Footer from "../components/Footer.vue";
 
 export default {
   name: "Home",
   components: {
     Banner,
-//    AboutSection,
     ProductSection,
     BrandsSection,
+    Footer
   },
 };
 </script>
