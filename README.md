@@ -47,8 +47,9 @@ To create a safe and easy way to build an online ecommerce store.
 - [X] Development : Setup filters in Product Page using tags
 - [X] Development : Develop Brands-Section for Homepage to display all available/partner brands
 - [ ] Development : Develop Brands Products page to show all products for a brand and respective filters
-- [ ] Development : Develop a Brand page to display all rbands and respective offers
-- [ ] Development :  Develop an offer section in Home page
+- [ ] Development : Develop a Brand page to display all brands and respective offers
+- [ ] Development : Develop an offer section in Home page
+- [ ] Development : Develop Footer component
 - [ ] Development : Setup checkout and payments using PayU gateway
 - [ ] Development : Create Admin/Orders component to display current orders
 - [ ] Development : Store all the orders use make and transactiond details
