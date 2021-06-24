@@ -21,17 +21,12 @@
           >
             <li class="nav-item">
               <router-link to="/products" class="nav-link" href="#"
-                >Women</router-link
+                >Explore</router-link
               >
             </li>
             <li class="nav-item">
-              <router-link to="/products" class="nav-link" href="#"
-                >Men</router-link
-              >
-            </li>
-            <li class="nav-item">
-              <router-link to="/products" class="nav-link" href="#"
-                >Pride</router-link
+              <router-link to="/brands" class="nav-link" href="#"
+                >Brands</router-link
               >
             </li>
           </ul>

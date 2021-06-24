@@ -22,20 +22,14 @@
       </div>
     </div>
   </main>
-  <product-carousel
-    :title="'New Arrival'"
-    :searchField="'is_new'"
-    :value="true"
-  ></product-carousel>
 </div>
 </template>
 <script>
 import { db } from "../firebase";
 import ProductCard from "../components/ProductCard.vue";
-import ProductCarousel from "../components/ProductCarousel.vue";
 
 export default {
-  components: { ProductCard, ProductCarousel },
+  components: { ProductCard },
   name: "Product-section",
   props: {},
   data() {

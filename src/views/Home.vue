@@ -1,26 +1,28 @@
 <template>
-<div>
-  <Navbar/>
-  <div class="home">
-    <Banner></Banner>
-    <About-section></About-section>
-    <product-section></product-section>
+  <div>
+    <Navbar />
+    <div class="home">
+      <Banner></Banner>
+      <!-- <About-section></About-section> -->
+      <product-section></product-section>
+      <brands-section></brands-section>
+    </div>
   </div>
-</div>
-  
 </template>
 
 <script>
 import Banner from "../components/Banner.vue";
-import AboutSection from "../sections/About-Section.vue";
+//import AboutSection from "../sections/About-Section.vue";
 import ProductSection from "../sections/Products-Section.vue";
+import BrandsSection from "../sections/Brands-Section.vue";
 
 export default {
   name: "Home",
   components: {
     Banner,
-    AboutSection,
+//    AboutSection,
     ProductSection,
+    BrandsSection,
   },
 };
 </script>
