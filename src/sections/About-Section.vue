@@ -16,9 +16,10 @@
       <div class="col-lg-7 p-3 p-lg-5 pt-lg-3">
         <h1 class="display-4 fw-bold lh-1">About Shopin-io</h1>
         <p class="lead">
-          A store for the developers. We provide eveything that a developer
-          might need from electronics to Graphics for you wall. You want it we
-          deliver it.
+          I am building a fullscale ecommerce application which can be used by
+          business (small/large) to develop and launch their own online store.
+          The aim is to build it in a developer friendly manner with everything
+          ready, packed and set for developers to modify and use.
         </p>
         <div
           class="d-grid gap-2 d-md-flex justify-content-md-center mb-4 mb-lg-3"
@@ -28,12 +29,6 @@
             class="btn btn-primary btn-lg px-4 me-md-2 fw-bold"
             href="#"
             >Our products</router-link
-          >
-          <router-link
-            to="/about"
-            class="btn btn-outline-primary btn-lg px-4 me-md-2 fw-bold"
-            href="#"
-            >About us</router-link
           >
         </div>
       </div>

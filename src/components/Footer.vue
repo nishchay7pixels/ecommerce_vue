@@ -86,7 +86,7 @@
             <a href="#!" class="text-reset">Products</a>
           </p>
           <p>
-            <a href="#!" class="text-reset">About us</a>
+            <router-link :to="'/about'" class="text-reset">About us</router-link>
           </p>
           <p>
             <a href="#!" class="text-reset">Help</a>
