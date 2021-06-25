@@ -54,7 +54,7 @@ To create a safe and easy way to build an online ecommerce store.
 - [ ] Development : Create Admin/Orders component to display current orders
 - [ ] Development : Store all the orders use make and transactiond details
 - [X] Development : Create 404 Error page
-- [ ] Development : Create logout error page
+- [X] Development : Create logout success page
 - [ ] Development : Create Customer checkout form for storing customer details
 - [ ] Development : Load product page as per the option(gender) selected in NavBar
 - [ ] Development : Display success alert when product added to cart.
