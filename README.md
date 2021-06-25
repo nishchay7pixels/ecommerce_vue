@@ -52,6 +52,7 @@ To create a safe and easy way to build an online ecommerce store.
 - [ ] Development : Develop Footer component
 - [ ] Development : Setup checkout and payments using PayU gateway
 - [ ] Development : on Checkoutpage fetch actual product information from db and compare against cart items to see if product is still available and current price. if anything comes up handle and prompt user about it.
+- [ ] Development - on place order page confirm total price of existing cart items with the price available in db. consider prices from db as final.
 - [ ] Development : Create Admin/Orders component to display current orders
 - [ ] Development : Store all the orders use make and transactiond details
 - [X] Development : Create 404 Error page
