@@ -4,6 +4,7 @@
     <div class="home">
       <Banner></Banner>
       <!-- <About-section></About-section> -->
+      <category-section></category-section>
       <product-section></product-section>
       <brands-section></brands-section>
     </div>
@@ -16,6 +17,7 @@ import Banner from "../components/Banner.vue";
 //import AboutSection from "../sections/About-Section.vue";
 import ProductSection from "../sections/Products-Section.vue";
 import BrandsSection from "../sections/Brands-Section.vue";
+import CategorySection from "../sections/Category-Section.vue";
 import Footer from "../components/Footer.vue";
 
 export default {
@@ -24,6 +26,7 @@ export default {
     Banner,
     ProductSection,
     BrandsSection,
+    CategorySection,
     Footer
   },
 };
