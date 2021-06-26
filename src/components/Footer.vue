@@ -47,7 +47,7 @@
             <i class="fas fa-gem me-3"></i>Shopin-io
           </h6>
           <p>
-            We are an ecommerce company. We provide latest trend and fasion.
+            We are an ecommerce company. We provide latest trend and fashion.
           </p>
         </div>
         <!-- Grid column -->
