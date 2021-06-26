@@ -3,9 +3,11 @@
     <Navbar />
     <div class="home">
       <Banner></Banner>
+      <br/>
+      <category-section></category-section>
       <carousel></carousel>
       <!-- <About-section></About-section> -->
-      <category-section></category-section>
+      
       <product-section></product-section>
       <brands-section></brands-section>
     </div>
