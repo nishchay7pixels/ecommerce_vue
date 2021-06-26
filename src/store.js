@@ -3,13 +3,25 @@ import Vue from 'vue'
 Vue.use(Vuex)
 
 let localCart = window.localStorage.getItem('cart');
+let wishList = window.localStorage.getItem('wishlist');
 
 export default new Vuex.Store({
 
     state: {
-        cart: localCart ? JSON.parse(localCart) : []
+        cart: localCart ? JSON.parse(localCart) : [],
+        wishlist: wishList ? JSON.parse(wishList) : []
     },
     mutations: {
+        wishlistItem(state, item){
+            let found = state.wishlist.find(product => product.productId == item.productId);
+            if(found){
+                let index = state.wishlist.findIndex(product => product.productId == item.productId);
+                state.wishlist.splice(index, 1);
+            }else{
+                state.wishlist.push(item);
+            }
+            this.commit('savaToWishlist');
+        },
         addToCart(state, item) {
             let found = state.cart.find(product => product.productId == item.productId); //find product using id
             if (found) {
@@ -36,6 +48,10 @@ export default new Vuex.Store({
         },
         savaToLocal(state) {
             window.localStorage.setItem('cart', JSON.stringify(state.cart));
+        },
+        savaToWishlist(state) {
+            console.log(state.wishlist)
+            window.localStorage.setItem('wishlist', JSON.stringify(state.wishlist));
         },
 
     },
