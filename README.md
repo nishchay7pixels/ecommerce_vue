@@ -48,6 +48,7 @@ To create a safe and easy way to build an online ecommerce store.
 - [X] Development : Develop Brands-Section for Homepage to display all available/partner brands
 - [ ] Development : Develop Brands Products page to show all products for a brand and respective filters
 - [ ] Development : Develop a Brand page to display all brands and respective offers
+- [X] Development : Develop add to wishlist functionality
 - [ ] Development : Develop an offer section in Home page
 - [ ] Development : Develop Footer component
 - [ ] Development : Setup checkout and payments using PayU gateway
