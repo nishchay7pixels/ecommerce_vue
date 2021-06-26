@@ -1,14 +1,14 @@
 <template>
   <div class="filter-panel">
     <div class="accordion" id="accordionExample">
-      <div class="accordion-item">
+      <div class="accordion-item ">
         <h2 class="accordion-header" id="headingOne">
           <button
-            class="accordion-button"
+            class="accordion-button collapsed "
             type="button"
             data-bs-toggle="collapse"
             data-bs-target="#collapseOne"
-            aria-expanded="true"
+            aria-expanded="false"
             aria-controls="collapseOne"
           >
             Filter Results
@@ -16,7 +16,7 @@
         </h2>
         <div
           id="collapseOne"
-          class="accordion-collapse collapse show"
+          class="accordion-collapse collapse"
           aria-labelledby="headingOne"
           data-bs-parent="#accordionExample"
         >
@@ -64,6 +64,25 @@
                     <option value="male">Male</option>
                     <option value="female">Female</option>
                     <option value="pride">Pride</option>
+                  </select>
+                </div>
+              </div>
+              <div class="col">
+                <div class="input-group mb-3">
+                  <label class="input-group-text" for="inputGroupSelect01"
+                    >Size</label
+                  >
+                  <select
+                    class="form-select"
+                    id="inputGroupSelect01"
+                    v-model="size"
+                    :disabled="!applyfilter"
+                  >
+                    <option value="xsmall">XS</option>
+                    <option value="small">S</option>
+                    <option value="medium">M</option>
+                    <option value="large">L</option>
+                    <option value="xlarge">XL</option>
                   </select>
                 </div>
               </div>
@@ -187,6 +206,7 @@ export default {
   data() {
     return {
       gender: "male",
+      size: "small",
       priceMax: 1500,
       maleCategoryList: ["New Arrival", "All", "Deals", "T-shirts", "Shirts", "Jeans", "Beauty"],
       femaleCategoryList: [
