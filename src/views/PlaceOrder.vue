@@ -17,58 +17,25 @@
               class="
                 list-group-item
                 d-flex
-                justify-content-between
-                lh-condensed
+                justify-content-left
               "
+              v-for="(product, index) in cart"
+              :key="index"
             >
-              <div>
-                <h6 class="my-0">Product name</h6>
-                <small class="text-muted">Brief description</small>
+              <div class="row">
+                <h6 class="col-8">{{ product.productName.substring(0, 25) }}</h6>
+                <h6 class="col-2">X {{ product.productQuantity }}</h6>
+                <span class="text-muted col-2">${{ product.productPrice*product.productQuantity }}</span>
               </div>
-              <span class="text-muted">$12</span>
             </li>
-            <li
-              class="
-                list-group-item
-                d-flex
-                justify-content-between
-                lh-condensed
-              "
-            >
-              <div>
-                <h6 class="my-0">Second product</h6>
-                <small class="text-muted">Brief description</small>
-              </div>
-              <span class="text-muted">$8</span>
-            </li>
-            <li
-              class="
-                list-group-item
-                d-flex
-                justify-content-between
-                lh-condensed
-              "
-            >
-              <div>
-                <h6 class="my-0">Third item</h6>
-                <small class="text-muted">Brief description</small>
-              </div>
-              <span class="text-muted">$5</span>
-            </li>
-            <li class="list-group-item d-flex justify-content-between bg-light">
-              <div class="text-success">
-                <h6 class="my-0">Promo code</h6>
-                <small>EXAMPLECODE</small>
-              </div>
-              <span class="text-success">-$5</span>
-            </li>
+
             <li class="list-group-item d-flex justify-content-between">
               <span>Total (USD)</span>
               <strong>$20</strong>
             </li>
           </ul>
 
-          <form class="card p-2">
+          <!-- <form class="card p-2">
             <div class="input-group">
               <input
                 type="text"
@@ -79,7 +46,7 @@
                 <button type="submit" class="btn btn-secondary">Redeem</button>
               </div>
             </div>
-          </form>
+          </form> -->
         </div>
         <div class="col-md-8 order-md-1">
           <h4 class="mb-3">Billing address</h4>
@@ -205,7 +172,7 @@
         </div>
       </div>
     </div>
-    <Footer/>
+    <Footer />
   </div>
 </template>
 <script>
@@ -215,7 +182,21 @@ export default {
   name: "place-order",
   components: {
     Navbar,
-    Footer
+    Footer,
+  },
+  data() {
+    return {
+      cart: null,
+    };
+  },
+  created() {
+    this.cart = this.$store.state.cart;
+    this.fetchProductPrice();
+  },
+  methods: {
+    fetchProductPrice() {
+      console.log("method called");
+    },
   },
 };
 </script>
