@@ -46,7 +46,7 @@ export default {
   height: 100vh;
   z-index: 2;
   background-color: #080d15;
-  opacity: 0.7;
+  opacity: 0.4;
 }
 
 .btn.btn-lg {
