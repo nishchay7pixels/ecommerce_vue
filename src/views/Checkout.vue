@@ -100,11 +100,17 @@
       <i class="fas fa-shopping-cart fa-3x"></i>
       <h1>Cart Empty</h1>
     </div>
+    <br />
+    <div class="wishlist">
+      <br />
+      <wishlist-section @wishlistEvent="reload()"></wishlist-section>
+    </div>
   </div>
 </template>
 <script>
 import { EventBus } from "../main";
 import ViewButton from "../components/ViewButton.vue";
+import WishlistSection from "../sections/Wishlist-Section.vue";
 export default {
   name: "Checkout",
   data() {
@@ -116,45 +122,52 @@ export default {
       discount: 0, //Need to also pass raw_price to calculate it. Skip for now.
     };
   },
-  components:{
-    ViewButton
+  components: {
+    ViewButton,
+    WishlistSection,
   },
   created() {
     //fetch products
     this.cart = this.$store.state.cart;
-    this.calculateTotalPrice();
-    this.calculateTotalQuantity();
-    this.checkQuantity();
+    this.reload();
   },
   methods: {
+    reload() {
+      this.calculateTotalPrice();
+      this.calculateTotalQuantity();
+      this.checkQuantity();
+    },
     checkQuantity() {
-      if (this.totalQuantity == 0) {
+      if (this.$store.state.cart.length == 0) {
         this.emptyCart = true;
       } else {
         this.emptyCart = false;
       }
     },
     deleteProduct(item) {
-      if (parseInt(item.productQuantity) - 1 == 0) {
+      if (parseInt(item.productQuantity) == 1) {
         this.$store.commit("deleteFromCart", item.productId);
       } else {
-        let index = this.cart.findIndex(
-          (product) => product.productId == item.productId
-        );
-        this.cart[index].productQuantity = this.cart[index].productQuantity - 1;
+        // let index = this.cart.findIndex(
+        //   (product) => product.productId == item.productId
+        // );
+        //this.cart[index].productQuantity = this.cart[index].productQuantity - 1;
+        this.$store.commit("reduceQuantity", item.productId);
       }
       this.total = this.total - parseFloat(item.productPrice);
       this.totalQuantity = this.totalQuantity - 1;
-      this.checkQuantity();
+      this.reload();
       EventBus.$emit("notification-error", "Item deleted!");
     },
     calculateTotalQuantity() {
-      this.cart.forEach((item) => {
+      this.totalQuantity = 0;
+      this.$store.state.cart.forEach((item) => {
         this.totalQuantity =
           this.totalQuantity + parseInt(item.productQuantity);
       });
     },
     calculateTotalPrice() {
+      this.total = 0;
       this.cart.forEach((item) => {
         this.total =
           this.total +

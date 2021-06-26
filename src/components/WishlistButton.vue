@@ -1,6 +1,6 @@
 <template>
   <div class="wishlist-button">
-    <button button class="btn" @click="addToCart()">
+    <button button class="btn" @click="addToWishlist()">
       <i :class="(toggle?'fas pink-heart':'far white-heart')+' fa-heart'"></i
       ><!--(toggle?'fas pink-heart':'far white-heart')+' fa-heart'-->
     </button>
@@ -31,7 +31,7 @@ export default {
     this.toggle=exist;
   },
   methods: {
-    addToCart() {
+    addToWishlist() {
       this.toggle = !this.toggle;
       this.setItem();
       this.$store.commit("wishlistItem", this.item);

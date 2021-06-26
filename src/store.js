@@ -42,18 +42,22 @@ export default new Vuex.Store({
             this.commit('savaToLocal');
         },
         deleteFromCart(state, pid) {
+            console.log("QuantityLeft "+state.cart.find(product => product.productId == pid).productQuantity);
             let index = state.cart.findIndex(product => product.productId == pid);
             state.cart.splice(index, 1);
+            this.commit('savaToLocal');
+        },
+        reduceQuantity(state,pid){
+            let found = state.cart.find(product => product.productId == pid);
+            found.productQuantity--;
             this.commit('savaToLocal');
         },
         savaToLocal(state) {
             window.localStorage.setItem('cart', JSON.stringify(state.cart));
         },
         savaToWishlist(state) {
-            console.log(state.wishlist)
             window.localStorage.setItem('wishlist', JSON.stringify(state.wishlist));
         },
-
     },
     computed: {
 
