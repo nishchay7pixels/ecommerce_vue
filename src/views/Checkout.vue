@@ -13,8 +13,8 @@
                   <th class="col-2"></th>
                   <th class="col-4">Name</th>
                   <th class="col-2">Price</th>
-                  <th class="col-2">Quantity</th>
-                  <th class="col-2"></th>
+                  <th class="col-1">Quantity</th>
+                  <th class="col-3"></th>
                 </tr>
               </thead>
               <tbody>
@@ -24,14 +24,17 @@
                   </td>
                   <td class="col-4">{{ product.productName }}</td>
                   <td class="col-2">{{ product.productPrice }}</td>
-                  <td class="col-2">{{ product.productQuantity }}</td>
-                  <td class="col-2">
+                  <td class="col-1">{{ product.productQuantity }}</td>
+                  <td class="col-3">
                     <button
                       @click="deleteProduct(product)"
                       class="btn btn-danger"
                     >
-                      Delete
+                      <i class="fas fa-trash"></i>
                     </button>
+                    <view-button :itemid="product.productId" :_buttontext="''"
+                      ><i class="fa fa-expand" aria-hidden="true"></i
+                    ></view-button>
                   </td>
                 </tr>
               </tbody>
@@ -58,7 +61,7 @@
                     <td class="col"></td>
                     <td class="col-2">${{ total.toFixed(2) }}</td>
                   </tr>
-                  <tr style="text-align: left"  v-if="discount!=0">
+                  <tr style="text-align: left" v-if="discount != 0">
                     <td class="col-8"><b>Discount</b></td>
                     <td class="col"></td>
                     <td class="col-2">-$0</td>
@@ -97,11 +100,11 @@
       <i class="fas fa-shopping-cart fa-3x"></i>
       <h1>Cart Empty</h1>
     </div>
-    
   </div>
 </template>
 <script>
-import { EventBus } from '../main'
+import { EventBus } from "../main";
+import ViewButton from "../components/ViewButton.vue";
 export default {
   name: "Checkout",
   data() {
@@ -109,9 +112,12 @@ export default {
       cart: [],
       total: null,
       totalQuantity: 0,
-      emptyCart : true,
-      discount : 0 //Need to also pass raw_price to calculate it. Skip for now.
+      emptyCart: true,
+      discount: 0, //Need to also pass raw_price to calculate it. Skip for now.
     };
+  },
+  components:{
+    ViewButton
   },
   created() {
     //fetch products
@@ -121,10 +127,10 @@ export default {
     this.checkQuantity();
   },
   methods: {
-    checkQuantity(){
-      if(this.totalQuantity==0){
+    checkQuantity() {
+      if (this.totalQuantity == 0) {
         this.emptyCart = true;
-      }else{
+      } else {
         this.emptyCart = false;
       }
     },
@@ -140,7 +146,7 @@ export default {
       this.total = this.total - parseFloat(item.productPrice);
       this.totalQuantity = this.totalQuantity - 1;
       this.checkQuantity();
-      EventBus.$emit('notification-error', "Item deleted!");
+      EventBus.$emit("notification-error", "Item deleted!");
     },
     calculateTotalQuantity() {
       this.cart.forEach((item) => {

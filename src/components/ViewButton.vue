@@ -1,5 +1,4 @@
 <template>
-  <div class="view-button">
     <button
       type="button"
       :class="_buttonclass==''?_buttonclass:'btn btn-outline-primary'"
@@ -7,7 +6,6 @@
     >
       <slot></slot>{{_buttontext}}
     </button>
-  </div>
 </template>
 <script>
 export default {
