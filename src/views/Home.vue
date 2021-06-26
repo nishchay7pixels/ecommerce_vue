@@ -3,6 +3,7 @@
     <Navbar />
     <div class="home">
       <Banner></Banner>
+      <carousel></carousel>
       <!-- <About-section></About-section> -->
       <category-section></category-section>
       <product-section></product-section>
@@ -19,6 +20,8 @@ import ProductSection from "../sections/Products-Section.vue";
 import BrandsSection from "../sections/Brands-Section.vue";
 import CategorySection from "../sections/Category-Section.vue";
 import Footer from "../components/Footer.vue";
+import Carousel from "../components/Carousel.vue";
+
 
 export default {
   name: "Home",
@@ -27,8 +30,9 @@ export default {
     ProductSection,
     BrandsSection,
     CategorySection,
-    Footer
-  },
+    Footer,
+    Carousel
+  }
 };
 </script>
 <style>
