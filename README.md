@@ -60,7 +60,7 @@ To create a safe and easy way to build an online ecommerce store.
 - [X] Development : Create logout success page
 - [ ] Development : Create Customer checkout form for storing customer details
 - [ ] Development : Load product page as per the option(gender) selected in NavBar
-- [ ] Development : Display success alert when product added to cart.
+- [X] Development : Display success alert when product added to cart.
 - [ ] Development : Product suggestion section.
 - [X] Development : User profile screens and sign-in functionality for user
 - [ ] Development : Allow user to edit her information including address information and also rest or change password from profile settings
