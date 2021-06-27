@@ -43,45 +43,62 @@
         <br />
         <div class="form-group">
           <div class="container">
-            <div class="row">
-              <div class="col-6">
-                <input
-                  type="text"
-                  placeholder="Full name"
-                  class="form-control"
-                  v-model="profile.fullname"
-                />
+            <div
+              class="
+                row row-cols-1 row-cols-sm-1 row-cols-md-1 row-cols-lg-2
+                g-3
+              "
+            >
+              <div class="col">
+                <div class="form-floating mb-3">
+                  <input
+                    type="text"
+                    class="form-control"
+                    id="floatingInput"
+                    placeholder="Full name"
+                    v-model="profile.fullname"
+                  />
+                  <label for="floatingInput">Fullname</label>
+                </div>
               </div>
               <div class="col">
-                <input
-                  type="text"
-                  placeholder="Phone Number"
-                  class="form-control"
-                  v-model="profile.phone"
-                />
+                <div class="form-floating mb-3">
+                  <input
+                    type="text"
+                    class="form-control"
+                    id="floatingInput"
+                    placeholder="Phone Number"
+                    v-model="profile.phone"
+                  />
+                  <label for="floatingInput">Phone Number</label>
+                </div>
+              </div>
+              <div class="col">
+                <div class="form-floating">
+                  <textarea
+                    class="form-control"
+                    placeholder="Address"
+                    id="floatingTextarea"
+                    v-model="profile.address"
+                  ></textarea>
+                  <label for="floatingTextarea">Address</label>
+                </div>
+              </div>
+              <div class="col">
+                <div class="form-floating mb-3">
+                  <input
+                    type="text"
+                    class="form-control"
+                    id="floatingInput"
+                    placeholder="Pincode"
+                    v-model="profile.postcode"
+                  />
+                  <label for="floatingInput">Pincode</label>
+                </div>
               </div>
             </div>
             <br />
             <div class="row">
-              <div class="col">
-                <textarea
-                  type="text"
-                  placeholder="Address"
-                  class="form-control"
-                  v-model="profile.address"
-                />
-              </div>
-            </div>
-            <br />
-            <div class="row">
-              <div class="col-10">
-                <input
-                  type="text"
-                  placeholder="Postcode"
-                  class="form-control"
-                  v-model="profile.postcode"
-                />
-              </div>
               <div class="d-grid gap-2 col-2 mx-auto">
                 <button class="btn btn-primary" @click="saveProfile">
                   Save
@@ -101,28 +118,39 @@
         <br />
         <div class="form-group">
           <div class="container">
-            <div class="row">
-              <div class="col-6">
-                <input
-                  type="text"
-                  placeholder="User name"
-                  class="form-control"
-                  v-model="account.username"
-                />
+            <div
+              class="
+                row row-cols-1 row-cols-sm-1 row-cols-md-1 row-cols-lg-2
+                g-3
+              "
+            >
+              <div class="col">
+                <div class="form-floating mb-3">
+                  <input
+                    type="text"
+                    class="form-control"
+                    id="floatingInput"
+                    placeholder="Username"
+                    v-model="account.username"
+                  />
+                  <label for="floatingInput">Username</label>
+                </div>
               </div>
               <div class="col">
-                <input
-                  type="email"
-                  placeholder="Email"
-                  class="form-control"
-                  v-model="account.email"
-                />
+                <div class="form-floating mb-3">
+                  <input
+                    type="text"
+                    class="form-control"
+                    id="floatingInput"
+                    placeholder="Email"
+                    v-model="account.email"
+                    disabled
+                  />
+                  <label for="floatingInput">Email</label>
+                </div>
               </div>
-            </div>
 
-            <br />
-            <div class="row">
-              <div class="col-6">
+              <div class="col">
                 <input
                   type="text"
                   placeholder="New password"
@@ -141,13 +169,11 @@
             </div>
             <br />
             <div class="row">
-              <div class="col-4"></div>
-              <div class="d-grid gap-2 col-4 mx-auto">
+              <div class="d-grid gap-2 col-2 mx-auto">
                 <button class="btn btn-primary" @click="saveAccount">
                   Save
                 </button>
               </div>
-              <div class="col-4"></div>
             </div>
           </div>
         </div>
@@ -157,6 +183,7 @@
 </template>
 <script>
 import { fb, db } from "../firebase";
+import { EventBus } from "../main";
 export default {
   name: "profile-user",
   data() {
@@ -194,9 +221,18 @@ export default {
           .set(this.profile)
           .then(() => {
             console.log("Profile Information Saved.");
+            EventBus.$emit(
+                "notification-success",
+                "Profile Information Saved!"
+              );
           })
           .catch((error) => {
             console.error("Error saving profile information", error);
+            EventBus.$emit(
+                "notification-error",
+                "Something went wrong!"
+              );
+
           });
       }
     },
@@ -215,25 +251,32 @@ export default {
           fb.auth()
             .currentUser.updatePassword(this.password.new)
             .then(function () {
-              console.log("Password updated successfully");
+              EventBus.$emit(
+                "notification-success",
+                "Password updated successfully!"
+              );
             })
             .catch(function (error) {
               // An error happened.
-              console.log("Password update failed due to below error");
               console.error(error);
               alert("Please choose a valid password.");
             });
         }
-        db.collection("Account")
-          .doc(this.account.userId + "")
-          .set(this.account)
-          .then(() => {
-            console.log("Account Information Saved");
-          })
-          .catch((error) => {
-            console.error("Error saving account information", error);
-          });
-        console.log(this.password);
+        if (this.account.username != null) {
+          db.collection("Account")
+            .doc(this.account.userId + "")
+            .set(this.account)
+            .then(() => {
+              EventBus.$emit(
+                "notification-success",
+                "Username Saved!"
+              );
+            })
+            .catch((error) => {
+              alert("Error saving account information");
+              console.log(error);
+            });
+        }
       }
     },
   },
@@ -274,5 +317,8 @@ export default {
   },
 };
 </script>
-<style>
+<style scoped>
+.profile-user{
+  background-color:rgba(248, 248, 248, 0.501);
+}
 </style>

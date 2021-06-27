@@ -3,7 +3,7 @@
     <Navbar />
     <div class="container">
       <div class="py-5 text-center">
-        <h2>Place Order form</h2>
+        <h2>Billing Details</h2>
       </div>
 
       <div class="row">
@@ -14,18 +14,18 @@
           </h4>
           <ul class="list-group mb-3">
             <li
-              class="
-                list-group-item
-                d-flex
-                justify-content-left
-              "
+              class="list-group-item d-flex justify-content-left"
               v-for="(product, index) in cart"
               :key="index"
             >
               <div class="row">
-                <h6 class="col-8">{{ product.productName.substring(0, 25) }}</h6>
+                <h6 class="col-8">
+                  {{ product.productName.substring(0, 25) }}
+                </h6>
                 <h6 class="col-2">X {{ product.productQuantity }}</h6>
-                <span class="text-muted col-2">${{ product.productPrice*product.productQuantity }}</span>
+                <span class="text-muted col-2"
+                  >${{ product.productPrice * product.productQuantity }}</span
+                >
               </div>
             </li>
 
@@ -61,6 +61,7 @@
                   placeholder=""
                   value=""
                   required
+                  v-model="profile.fullname.split(' ')[0]"
                 />
                 <div class="invalid-feedback">
                   Valid first name is required.
@@ -75,6 +76,7 @@
                   placeholder=""
                   value=""
                   required
+                  v-model="profile.fullname.split(' ')[1]"
                 />
                 <div class="invalid-feedback">Valid last name is required.</div>
               </div>
@@ -88,6 +90,7 @@
                 class="form-control"
                 id="email"
                 placeholder="you@example.com"
+                v-model="account.email"
               />
               <div class="invalid-feedback">
                 Please enter a valid email address for shipping updates.
@@ -102,6 +105,7 @@
                 id="address"
                 placeholder="Enter valid address"
                 required
+                v-model="profile.address"
               />
               <div class="invalid-feedback">
                 Please enter your shipping address.
@@ -137,12 +141,12 @@
                   id="pincode"
                   placeholder=""
                   required
+                  v-model="profile.postcode"
                 />
                 <div class="invalid-feedback">Pincode code required.</div>
               </div>
             </div>
-            <hr class="mb-4" />
-            <div class="custom-control input-group">
+            <!-- <div class="custom-control input-group">
               <input
                 type="checkbox"
                 class="custom-control-input"
@@ -151,9 +155,9 @@
               <label class="custom-control-label" for="same-address"
                 >Shipping address is the same as my billing address</label
               >
-            </div>
+            </div> -->
 
-            <div class="custom-control input-group">
+            <!-- <div class="custom-control input-group">
               <input
                 type="checkbox"
                 class="custom-control-input"
@@ -162,7 +166,7 @@
               <label class="custom-control-label" for="save-info"
                 >Save this information for next time</label
               >
-            </div>
+            </div> -->
 
             <hr class="mb-4" />
             <button class="btn btn-primary btn-lg btn-block" type="submit">
@@ -178,6 +182,7 @@
 <script>
 import Navbar from "../components/Navbar.vue";
 import Footer from "../components/Footer.vue";
+import { fb, db } from "../firebase";
 export default {
   name: "place-order",
   components: {
@@ -187,15 +192,64 @@ export default {
   data() {
     return {
       cart: null,
+      account: {
+        userId: null,
+        username: null,
+        email: null,
+      },
+      profile: {
+        fullname: "",
+        phone: "",
+        address: "",
+        postcode: "",
+      },
     };
   },
   created() {
     this.cart = this.$store.state.cart;
     this.fetchProductPrice();
+    this.fetchUserInformation();
   },
   methods: {
     fetchProductPrice() {
       console.log("method called");
+    },
+    fetchUserInformation() {
+      let user = fb.auth().currentUser;
+      if (user) {
+        this.account.userId = user.uid;
+        this.account.email = user.email;
+        console.log(this.account.userId);
+        //var docRef = db.collection("Profile").doc(this.account.userId);
+        db.collection("Profile")
+          .doc(this.account.userId)
+          .get()
+          .then((doc) => {
+            if (doc.exists) {
+              this.profile = doc.data();
+            } else {
+              // doc.data() will be undefined in this case
+              console.log("No such document!");
+            }
+          })
+          .catch((error) => {
+            console.log("Error getting document:", error);
+          });
+        db.collection("Account")
+          .doc(this.account.userId)
+          .get()
+          .then((doc) => {
+            if (doc.exists) {
+              this.account = doc.data();
+            } else {
+              // doc.data() will be undefined in this case
+              console.log("No such document!");
+            }
+          })
+          .catch((error) => {
+            console.log("Error getting document:", error);
+          });
+      }
     },
   },
 };
