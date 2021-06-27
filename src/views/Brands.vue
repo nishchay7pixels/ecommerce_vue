@@ -9,11 +9,11 @@
             <section class="py-1 text-center">
               <div class="row py-lg-1">
                 <div class="col-lg-6 col-md-8 mx-auto">
-                  <h2 class="fw-light"><b>Brands</b></h2>
+                  <h2 class="fw-light"><b>Shop by brand</b></h2>
                 </div>
               </div>
             </section>
-            <div
+            <!-- <div
               class="
                 row row-cols-2 row-cols-sm-2 row-cols-md-2 row-cols-lg-4
                 g-3
@@ -25,6 +25,18 @@
                   :redirectTo="'/home'"
                 ></brands-card>
               </div>
+            </div> -->
+            <br/>
+            <div class="container">
+              <div class="row row-cols-2 row-cols-sm-2 row-cols-md-4 g-2">
+                <div
+                  class="col-sm"
+                  v-for="(product, index) in products"
+                  :key="index"
+                >
+                  <product-card :product="product"></product-card>
+                </div>
+              </div>
             </div>
           </div>
         </main>
@@ -34,19 +46,21 @@
 </template>
 <script>
 import { db } from "../firebase";
-import BrandsCard from "../components/BrandsCard.vue";
+import ProductCard from "../components/ProductCard.vue";
 export default {
   name: "Brands",
   data() {
     return {
       genderSelected: "men",
       brands: [],
+      products: [],
       quantity: "1",
     };
   },
   components: {
     // BrandsSection,
-    BrandsCard,
+    ProductCard,
+    //BrandsCard,
   },
   props: {
     brand_code: null,
@@ -54,9 +68,11 @@ export default {
   created() {
     console.log(this.brand_code);
     if (this.brand_code.toString() == "all") {
-      this.getAllBrands();
+      //this.getAllBrands();
+      this.getAll();
     } else {
       this.getThisBrands();
+      this.getOfBrand();
     }
   },
   methods: {
@@ -83,6 +99,20 @@ export default {
             this.brands.push({ id: element.id, data: element.data() });
           });
         });
+    },
+    getOfBrand() {
+      this.products = [];
+      db.collection("Products")
+        .where("brand", "==", this.brand_code)
+        .get()
+        .then((querySnapshot) => {
+          querySnapshot.forEach((element) => {
+            if (element.data().image[0] != null) {
+              this.products.push({ id: element.id, data: element.data() });
+            }
+          });
+        });
+      console.log(this.products);
     },
     getAll() {
       this.products = [];
