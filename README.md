@@ -62,7 +62,7 @@ To create a safe and easy way to build an online ecommerce store.
 - [ ] Development : Load product page as per the option(gender) selected in NavBar
 - [ ] Development : Display success alert when product added to cart.
 - [ ] Development : Product suggestion section.
-- [ ] Development : User profile screens and sign-in functionality for user
+- [X] Development : User profile screens and sign-in functionality for user
 - [ ] Development : Store users recently viewed orders
 - [ ] Development : Display Actual price and discounted price
 - [ ] Development : Implement OAuth2 for login 
