@@ -211,7 +211,8 @@ export default {
           var user = fb.auth().currentUser;
           this.saveUser(user.uid);
           this.hideModal();
-          this.$router.replace("/admin");
+          //this.$router.replace("/home");
+          window.location.replace("/home");
         })
         .catch(function (error) {
           var errorCode = error.code;
@@ -228,7 +229,8 @@ export default {
         .signInWithEmailAndPassword(this.email, this.password)
         .then(() => {
           this.hideModal();
-          this.$router.replace("/admin");
+          //this.$router.replace("/home");
+          window.location.replace("/home");
         })
         .catch(function (error) {
           var errorCode = error.code;
