@@ -19,16 +19,7 @@
         <i class="fab fa-twitter"></i>
       </a>
       <a href="" class="me-4 text-reset">
-        <i class="fab fa-google"></i>
-      </a>
-      <a href="" class="me-4 text-reset">
         <i class="fab fa-instagram"></i>
-      </a>
-      <a href="" class="me-4 text-reset">
-        <i class="fab fa-linkedin"></i>
-      </a>
-      <a href="" class="me-4 text-reset">
-        <i class="fab fa-github"></i>
       </a>
     </div>
     <!-- Right -->
@@ -59,16 +50,16 @@
             Brands
           </h6>
           <p>
-            <a href="#!" class="text-reset">Levi's</a>
+            <router-link :to="'/brands/all'" class="text-reset">Levi's</router-link>
           </p>
           <p>
-            <a href="#!" class="text-reset">Killer</a>
+            <router-link :to="'/brands/all'" class="text-reset">Killer</router-link>
           </p>
           <p>
-            <a href="#!" class="text-reset">Pepe Jeans London</a>
+            <router-link :to="'/brands/all'" class="text-reset">Pepe Jeans London</router-link>
           </p>
           <p>
-            <a href="#!" class="text-reset">Duke</a>
+            <router-link :to="'/brands/all'" class="text-reset">Duke</router-link>
           </p>
         </div>
         <!-- Grid column -->
@@ -80,10 +71,10 @@
             Useful links
           </h6>
           <p>
-            <a href="#!" class="text-reset">Brands</a>
+            <router-link :to="'/brands/all'" class="text-reset">Brands</router-link>
           </p>
           <p>
-            <a href="#!" class="text-reset">Products</a>
+            <router-link :to="'/products'" class="text-reset">Products</router-link>
           </p>
           <p>
             <router-link :to="'/about'" class="text-reset">About us</router-link>
@@ -106,7 +97,6 @@
             help@shopin.io
           </p>
           <p><i class="fas fa-phone me-3"></i> + 91 95XXXXXXXX</p>
-          <p><i class="fas fa-print me-3"></i> + 91 78XXXXXXXX</p>
         </div>
         <!-- Grid column -->
       </div>
