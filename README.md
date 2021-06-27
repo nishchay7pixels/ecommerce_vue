@@ -63,6 +63,7 @@ To create a safe and easy way to build an online ecommerce store.
 - [ ] Development : Display success alert when product added to cart.
 - [ ] Development : Product suggestion section.
 - [X] Development : User profile screens and sign-in functionality for user
+- [ ] Development : Allow user to edit her information including address information and also rest or change password from profile settings
 - [ ] Development : Store users recently viewed orders
 - [ ] Development : Display Actual price and discounted price
 - [ ] Development : Implement OAuth2 for login 
