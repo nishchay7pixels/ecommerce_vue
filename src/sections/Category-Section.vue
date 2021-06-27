@@ -10,8 +10,7 @@ to that category. then your can just search for those product id in product db.
         <section class="py-1 text-center">
         </section>
         <div
-          class="row row-cols-2 row-cols-sm-2 row-cols-md-2 row-cols-lg-4 g-3"
-        >
+          class="row row-cols-2 row-cols-sm-2 row-cols-md-2 row-cols-lg-4 g-3">        
           <div class="col" v-for="(tile, index) in categoryTiles" :key="index">
             <category-card
               class="card"
@@ -44,6 +43,7 @@ export default {
   methods: {
     getAllCategoryTiles() {
       db.collection("TiledCategory")
+        .where("categoryActive", "==", true)
         .get()
         .then((querySnapshot) => {
           querySnapshot.forEach((element) => {
