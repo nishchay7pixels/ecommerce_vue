@@ -80,6 +80,22 @@ const routes = [
     component: () => import(/* webpackChunkName: "checkout" */ '../views/LogoutSuccess.vue')
   },
   {
+    path: '/order-success',
+    name: 'OrderPlaced',
+    // route level code-splitting
+    // this generates a separate chunk (about.[hash].js) for this route
+    // which is lazy-loaded when the route is visited.
+    component: () => import(/* webpackChunkName: "checkout" */ '../views/OrderPlaced.vue')
+  },
+  {
+    path: '/order-failed',
+    name: 'OrderFailed',
+    // route level code-splitting
+    // this generates a separate chunk (about.[hash].js) for this route
+    // which is lazy-loaded when the route is visited.
+    component: () => import(/* webpackChunkName: "checkout" */ '../views/OrderFailed.vue')
+  },
+  {
     path: '/profile',
     name: 'Profile',
     meta: { requiresAuth: true },
