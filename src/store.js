@@ -58,6 +58,11 @@ export default new Vuex.Store({
         savaToWishlist(state) {
             window.localStorage.setItem('wishlist', JSON.stringify(state.wishlist));
         },
+        clearMyCart(state){
+            console.log("clearing cart");
+            state.cart.splice(0, state.cart.length);
+            this.commit('savaToLocal');
+        }
     },
     computed: {
 
