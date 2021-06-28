@@ -207,7 +207,6 @@ export default {
   },
   methods: {
     saveProfile() {
-      console.log(this.profile);
       if (
         this.profile.fullname == "" ||
         this.profile.phone == "" ||

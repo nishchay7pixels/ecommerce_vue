@@ -46,18 +46,21 @@
         aria-labelledby="pills-orders-tab"
       >
         <h1>My Orders</h1>
+        <order-list-component></order-list-component>
       </div>
     </div>
   </div>
 </template>
 
 <script>
+import OrderListComponent from './OrderListComponent.vue';
 import ProfileUser from "./ProfileUser.vue"
 export default {
   name: "OverviewUser",
   props: {},
   components:{
-    ProfileUser
+    ProfileUser,
+    OrderListComponent
   }
 };
 </script>
