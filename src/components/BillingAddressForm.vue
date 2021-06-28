@@ -172,26 +172,26 @@
   </div>
 </template>
 <script>
-import {db} from "../firebase";
+import { db } from "../firebase";
 export default {
   name: "billing-form",
   data() {
     return {
-      request:{
-        address:null,
-        already_paid:null,
-        country_code:"IN",
-        order_id:null,
-        payment_type:"COD",
-        phone_number:null,
-        products:[],
-        user_id:null,
-        user_firstname:null,
-        user_lastname:null,
-        state_code:"UP",
-        user_email:null,
-        totalOrderPrice:null,
-      }
+      request: {
+        address: null,
+        already_paid: null,
+        country_code: "IN",
+        order_id: null,
+        payment_type: "COD",
+        phone_number: null,
+        products: null,
+        user_id: null,
+        user_firstname: null,
+        user_lastname: null,
+        state_code: "UP",
+        user_email: null,
+        totalOrderPrice: null,
+      },
     };
   },
   props: {
@@ -206,39 +206,45 @@ export default {
   },
 
   methods: {
-    formatRequest(){
+    formatRequest() {
       this.request.address = this.address;
       this.request.already_paid = false;
       this.request.order_id = "########";
       this.request.phone_number = this.phone;
       this.request.user_id = this.userId;
-      this.request.user_firstname=this.firstname;
-      this.request.user_lastname=this.lastname;
-      this.request.user_email=this.email;
-      this.request.timestamp=Date.now();
-      this.cart.forEach((product)=>{
-        this.request.products.push({"id":product.productId,"product_name":product.productName,"product_price":product.productPrice,"product_quantity":product.productQuantity});
-      })
+      this.request.user_firstname = this.firstname;
+      this.request.user_lastname = this.lastname;
+      this.request.user_email = this.email;
+      this.request.timestamp = Date.now();
     },
     submitData() {
       this.formatRequest();
       console.log(this.userId);
       /*
-      *Instead of directle saving informaiton to firebase DB
-      *In future handle it at backend where backend will recieve data from here and then
-      *it will store it temperorily from some time unless payment is successfully madde and then
-      *it will send it tu the data base. 
-      */
-      db.collection("Orders")
-        .add(this.request)
-        .then((docRef) => {
-          console.log("Document Id:", docRef.id);
-          this.$router.push("/order-success");
-        })
-        .catch((error) => {
-          console.log(error);
-          this.$router.push("/order-failed");
-        });
+       *Instead of directle saving informaiton to firebase DB
+       *In future handle it at backend where backend will recieve data from here and then
+       *it will store it temperorily from some time unless payment is successfully madde and then
+       *it will send it tu the data base.
+       */
+      this.cart.forEach((product) => {
+        this.request.products={
+          id: product.productId,
+          product_name: product.productName,
+          product_price: product.productPrice,
+          product_quantity: product.productQuantity,
+        };
+        db.collection("Orders")
+          .add(this.request)
+          .then((docRef) => {
+            console.log("Document Id:", docRef.id);
+            this.request.products=null;
+          })
+          .catch((error) => {
+            console.log(error);
+            this.$router.push("/order-failed");
+          });
+      })
+      this.$router.push("/order-success");
     },
   },
 };
