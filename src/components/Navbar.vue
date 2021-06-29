@@ -137,6 +137,7 @@ export default {
 };
 </script>
 <style scoped>
+@import url('https://fonts.googleapis.com/css2?family=Lobster&display=swap');
 .navbar-brand{
   font-family: lobster;
   font-size: 24px;
