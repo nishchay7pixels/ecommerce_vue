@@ -1,5 +1,6 @@
 <template>
-  <div class="container">
+  <div class="container order-page">
+    <h1>My Orders</h1>
     <table class="table">
       <thead>
         <tr>
@@ -83,5 +84,8 @@ export default {
 <style>
 .product-image{
   width: 50px;
+}
+.order-page{
+  background-color:rgba(248, 248, 248, 0.501);
 }
 </style>

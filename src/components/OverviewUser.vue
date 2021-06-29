@@ -45,7 +45,6 @@
         role="tabpanel"
         aria-labelledby="pills-orders-tab"
       >
-        <h1>My Orders</h1>
         <order-list-component></order-list-component>
       </div>
     </div>
