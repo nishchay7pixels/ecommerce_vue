@@ -8,7 +8,7 @@
           <th scope="col"></th>
           <th scope="col">Product</th>
           <th scope="col">Quantity</th>
-          <th scope="col">Date</th>
+          <!-- <th scope="col">Date</th> -->
           <th scope="col">Price</th>
         </tr>
       </thead>
@@ -23,14 +23,14 @@
           <td scope="row"><img class="product-image" :src="order.image" /></td>
           <td>{{ order.data.products.product_name }}</td>
           <td>{{ order.data.products.product_quantity }}</td>
-          <td>
+          <!-- <td>
             {{
               Date(order.data.timestamp)
                 .toString()
                 .substring(4, 15)
                 .replace(" ", ", ")
             }}
-          </td>
+          </td> -->
           <td>{{ order.data.products.product_price }}</td>
         </tr>
       </tbody>
@@ -55,6 +55,7 @@ export default {
 
     db.collection("Orders")
       .where("user_id", "==", this.user.uid)
+      .orderBy("timestamp",'desc')
       .get()
       .then((querySnapshot) => {
         querySnapshot.forEach((element) => {
