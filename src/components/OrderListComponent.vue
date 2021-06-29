@@ -10,13 +10,17 @@
           <th scope="col">Quantity</th>
           <th scope="col">Date</th>
           <th scope="col">Price</th>
-          <th scope="col"></th>
         </tr>
       </thead>
       <tbody>
-        <tr v-for="(order, index) in orders" :key="index">
+        <tr
+          class="item-list-row"
+          v-for="(order, index) in orders"
+          :key="index"
+          @click="viewDetails(order.data.products.id)"
+        >
           <th scope="row">{{ index + 1 }}</th>
-          <th scope="row"><img class="product-image" :src="order.image"/></th>
+          <td scope="row"><img class="product-image" :src="order.image" /></td>
           <td>{{ order.data.products.product_name }}</td>
           <td>{{ order.data.products.product_quantity }}</td>
           <td>
@@ -28,11 +32,6 @@
             }}
           </td>
           <td>{{ order.data.products.product_price }}</td>
-          <td>
-            <view-button :itemid="order.data.products.id" :_buttontext="''"
-              >View</view-button
-            >
-          </td>
         </tr>
       </tbody>
     </table>
@@ -41,15 +40,14 @@
 
 <script>
 import { fb, db } from "../firebase";
-import ViewButton from "./ViewButton.vue";
 export default {
-  components: { ViewButton },
+  components: {  },
   name: "order-list",
   data() {
     return {
       userId: null,
       orders: [],
-      products:[]
+      products: [],
     };
   },
   beforeMount() {
@@ -67,7 +65,10 @@ export default {
             .get()
             .then((doc) => {
               if (doc.exists) {
-                let order ={"data":element.data(),"image":doc.data().image[0]};
+                let order = {
+                  data: element.data(),
+                  image: doc.data().image[0],
+                };
                 this.orders.push(order);
                 console.log("Document data:", order);
               } else {
@@ -76,16 +77,23 @@ export default {
             });
         });
       });
-    
+  },
+  methods: {
+    viewDetails(pid) {
+      this.$router.push({ name: "ProductDetails", params: { id: pid } });
+    },
   },
 };
 </script>
 
 <style>
-.product-image{
+.product-image {
   width: 50px;
 }
-.order-page{
-  background-color:rgba(248, 248, 248, 0.501);
+.order-page {
+  background-color: rgba(248, 248, 248, 0.501);
+}
+.item-list-row {
+  cursor: pointer;
 }
 </style>
