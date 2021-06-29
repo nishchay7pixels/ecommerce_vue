@@ -137,6 +137,10 @@ export default {
 };
 </script>
 <style scoped>
+.navbar-brand{
+  font-family: lobster;
+  font-size: 24px;
+}
 .nav {
   display: inherit;
 }
