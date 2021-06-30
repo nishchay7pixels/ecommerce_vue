@@ -142,13 +142,15 @@
 
       <br /><br /><br />
     </div>
+    <recently-viewed></recently-viewed>
   </div>
 </template>
 <script>
 import AddToCart from "../components/AddToCart.vue";
+import RecentlyViewed from "../components/RecentlyViewed.vue";
 import { db } from "../firebase";
 export default {
-  components: { AddToCart },
+  components: { AddToCart, RecentlyViewed },
   name: "ProductDetails",
   props: {
     id: String,

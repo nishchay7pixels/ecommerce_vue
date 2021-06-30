@@ -22,7 +22,8 @@ export default {
   },
   methods: {
     viewDetails() {
-      this.mapProductId();      
+      this.mapProductId();   
+      this.$store.commit("recentView", this.productId);   
       this.$router.push({ name: "ProductDetails", params: { id: this.productId } });
     },
     mapProductId(){

@@ -9,6 +9,7 @@
       <!-- <About-section></About-section> -->
       
       <product-section></product-section>
+      <recently-viewed></recently-viewed>
       <brands-section></brands-section>
     </div>
     <Footer />
@@ -23,6 +24,7 @@ import BrandsSection from "../sections/Brands-Section.vue";
 import CategorySection from "../sections/Category-Section.vue";
 import Footer from "../components/Footer.vue";
 import Carousel from "../components/Carousel.vue";
+import RecentlyViewed from "../components/RecentlyViewed.vue";
 
 
 export default {
@@ -33,7 +35,8 @@ export default {
     BrandsSection,
     CategorySection,
     Footer,
-    Carousel
+    Carousel,
+    RecentlyViewed
   }
 };
 </script>

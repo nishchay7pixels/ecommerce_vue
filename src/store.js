@@ -4,14 +4,28 @@ Vue.use(Vuex)
 
 let localCart = window.localStorage.getItem('cart');
 let wishList = window.localStorage.getItem('wishlist');
+let recentlyViewed = window.localStorage.getItem('recent');
 
 export default new Vuex.Store({
 
     state: {
         cart: localCart ? JSON.parse(localCart) : [],
-        wishlist: wishList ? JSON.parse(wishList) : []
+        wishlist: wishList ? JSON.parse(wishList) : [],
+        recent: recentlyViewed ? JSON.parse(recentlyViewed) : []
     },
     mutations: {
+        recentView(state, pid){
+            
+            let found = state.recent.find(productId => productId == pid);
+            if(!found){
+                console.log("Not found!");
+                if(state.recent.length>=12){
+                    state.recent.splice(0, 1);
+                }
+                state.recent.push(pid);
+                this.commit('savaToRecentlyViewed');
+            }
+        },
         wishlistItem(state, item){
             let found = state.wishlist.find(product => product.productId == item.productId);
             if(found){
@@ -57,6 +71,9 @@ export default new Vuex.Store({
         },
         savaToWishlist(state) {
             window.localStorage.setItem('wishlist', JSON.stringify(state.wishlist));
+        },
+        savaToRecentlyViewed(state){
+            window.localStorage.setItem('recent', JSON.stringify(state.recent));
         },
         clearMyCart(state){
             console.log("clearing cart");
