@@ -4,12 +4,12 @@
     <table class="table">
       <thead>
         <tr>
-          <th scope="col">#</th>
+          <th scope="col"></th>
           <th scope="col"></th>
           <th scope="col">Product</th>
-          <th scope="col">Quantity</th>
-          <!-- <th scope="col">Date</th> -->
-          <th scope="col">Price</th>
+          <!-- <th scope="col">Quantity</th> -->
+          <th scope="col">Date</th>
+          <!-- <th scope="col">Price</th> -->
         </tr>
       </thead>
       <tbody>
@@ -19,29 +19,30 @@
           :key="index"
           @click="viewDetails(order.data.products.id)"
         >
-          <th scope="row">{{ index + 1 }}</th>
+          <th scope="col">{{index+1}}</th>
           <td scope="row"><img class="product-image" :src="order.image" /></td>
-          <td>{{ order.data.products.product_name }}</td>
-          <td>{{ order.data.products.product_quantity }}</td>
-          <!-- <td>
+          <td>{{ order.data.products.product_name.substring(0, 20) }}</td>
+          <!-- <td>{{ order.data.products.product_quantity }}</td> -->
+          <td>
             {{
-              Date(order.data.timestamp)
-                .toString()
-                .substring(4, 15)
-                .replace(" ", ", ")
+              new Date(order.data.timestamp).toLocaleDateString("en-us", {
+                weekday: "long",
+                year: "numeric",
+                month: "short",
+                day: "numeric",
+              })
             }}
-          </td> -->
-          <td>{{ order.data.products.product_price }}</td>
+          </td>
+          <!-- <td>$ {{ order.data.products.product_price }}</td> -->
         </tr>
       </tbody>
-    </table>
+    </table>   
   </div>
 </template>
 
 <script>
 import { fb, db } from "../firebase";
 export default {
-  components: {  },
   name: "order-list",
   data() {
     return {
@@ -55,7 +56,7 @@ export default {
 
     db.collection("Orders")
       .where("user_id", "==", this.user.uid)
-      .orderBy("timestamp",'desc')
+      .orderBy("timestamp", "desc")
       .get()
       .then((querySnapshot) => {
         querySnapshot.forEach((element) => {
@@ -97,4 +98,15 @@ export default {
 .item-list-row {
   cursor: pointer;
 }
+.table {
+  font-size: 15px;
+}
+.item-list-row{
+  box-shadow: 0 2px 6px 0 rgba(0,0,0,0.2);
+  transition: 0.3s;
+}
+.item-list-row:hover {
+  box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+}
+
 </style>
