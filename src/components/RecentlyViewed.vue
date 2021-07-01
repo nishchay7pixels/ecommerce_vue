@@ -274,8 +274,9 @@ export default {
   margin-top: 15px;
 }
 .carousel {
-  margin-bottom: 3px;
-  padding: 0 40px 30px 40px;
+  margin-bottom: 0px;
+  padding-left: 40px;
+  padding-right: 40px;
 }
 /* The controlsy */
 .carousel-control-prev {
@@ -284,7 +285,8 @@ export default {
   background: none repeat scroll 0 0 #2222222c;
   border: 4px solid #ffffff;
   border-radius: 23px 23px 23px 23px;
-  margin-top: 100px;
+  margin-top: auto ;
+  margin-bottom: auto ;
 }
 .carousel-control-next {
   height: 40px;
@@ -292,7 +294,8 @@ export default {
   background: none repeat scroll 0 0 #2222222c;
   border: 4px solid #ffffff;
   border-radius: 23px 23px 23px 23px;
-  margin-top: 100px ;
+  margin-top: auto ;
+  margin-bottom: auto ;
 }
 
 /* The colour of the indicators */
@@ -321,7 +324,7 @@ export default {
   background: none repeat scroll 0 0 #2222222c;
   border: 4px solid #ffffff;
   border-radius: 23px 23px 23px 23px;
-  margin-top: 50px;
+ 
 }
 .carousel-control-next {
   height: 30px;
@@ -329,7 +332,7 @@ export default {
   background: none repeat scroll 0 0 #2222222c;
   border: 4px solid #ffffff;
   border-radius: 23px 23px 23px 23px;
-  margin-top: 50px ;
+  
 }
 }
 </style>
