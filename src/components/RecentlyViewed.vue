@@ -81,6 +81,131 @@
     </div>
     <!--Mobile view-->
 
+
+    <div class="row mobile-browser">
+      <div class="col-md-12">
+        <div id="mCarousel" class="carousel slide" data-bs-ride="mcarousel">
+          <!-- Carousel items -->
+          <div class="carousel-inner">
+            <div class="carousel-item active" v-if="recentId.length>0">
+              <div class="row row-cols-2 row-cols-sm-2 row-cols-md-2 row-cols-lg-4 g-3">
+                <div
+                  class="col"
+                  v-for="(product, index) in recentProducts.row1.slice(0,2)"
+                  :key="index"
+                >
+                  <brands-card
+                    :image="product.data.image[0]"
+                    :redirectTo="'productdetail/' + product.id"
+                  ></brands-card>
+                </div>
+              </div>
+              <!--.row-->
+            </div>
+            <!--.item-->
+            <div class="carousel-item"  v-if="recentId.length>2">
+              <div class="row row-cols-2 row-cols-sm-2 row-cols-md-2 row-cols-lg-4 g-3">
+                <div
+                  class="col"
+                  v-for="(product, index) in recentProducts.row1.slice(2,recentProducts.row1.length)"
+                  :key="index"
+                >
+                  <brands-card
+                    :image="product.data.image[0]"
+                    :redirectTo="'productdetail/' + product.id"
+                  ></brands-card>
+                </div>
+              </div>
+              <!--.row-->
+            </div>
+            <!--.item-->
+            <div class="carousel-item" v-if="recentId.length>4">
+              <div class="row row-cols-2 row-cols-sm-2 row-cols-md-2 row-cols-lg-4 g-3">
+                <div
+                  class="col"
+                  v-for="(product, index) in recentProducts.row2.slice(0,2)"
+                  :key="index"
+                >
+                  <brands-card
+                    :image="product.data.image[0]"
+                    :redirectTo="'productdetail/' + product.id"
+                  ></brands-card>
+                </div>
+              </div>
+              <!--.row-->
+            </div>
+            <!--.item-->
+            <div class="carousel-item" v-if="recentId.length>6">
+              <div class="row row-cols-2 row-cols-sm-2 row-cols-md-2 row-cols-lg-4 g-3">
+                <div
+                  class="col"
+                  v-for="(product, index) in recentProducts.row2.slice(2,recentProducts.row2.length)"
+                  :key="index"
+                >
+                  <brands-card
+                    :image="product.data.image[0]"
+                    :redirectTo="'productdetail/' + product.id"
+                  ></brands-card>
+                </div>
+              </div>
+              <!--.row-->
+            </div>
+            <!--.item-->
+            <div class="carousel-item" v-if="recentId.length>8">
+              <div class="row row-cols-2 row-cols-sm-2 row-cols-md-2 row-cols-lg-4 g-3">
+                <div
+                  class="col"
+                  v-for="(product, index) in recentProducts.row3.slice(0,2)"
+                  :key="index"
+                >
+                  <brands-card
+                    :image="product.data.image[0]"
+                    :redirectTo="'productdetail/' + product.id"
+                  ></brands-card>
+                </div>
+              </div>
+              <!--.row-->
+            </div>
+            <div class="carousel-item" v-if="recentId.length>10">
+              <div class="row row-cols-2 row-cols-sm-2 row-cols-md-2 row-cols-lg-4 g-3">
+                <div
+                  class="col"
+                  v-for="(product, index) in recentProducts.row3.slice(2,recentProducts.row3.length)"
+                  :key="index"
+                >
+                  <brands-card
+                    :image="product.data.image[0]"
+                    :redirectTo="'productdetail/' + product.id"
+                  ></brands-card>
+                </div>
+              </div>
+              <!--.row-->
+            </div>
+          </div>
+          <!--.carousel-inner-->
+
+          <button
+            class="carousel-control-prev"
+            type="button"
+            data-bs-target="#mCarousel"
+            data-bs-slide="prev"
+          >
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Previous</span>
+          </button>
+          <button
+            class="carousel-control-next"
+            type="button"
+            data-bs-target="#mCarousel"
+            data-bs-slide="next"
+          >
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Next</span>
+          </button>
+        </div>
+        <!--.Carousel-->
+      </div>
+    </div>
     
   </div>
   <!--.container-->
@@ -178,9 +303,33 @@ export default {
   background: #428bca;
 }
 
-@media (max-width: 813px) {
-  .container {
+.mobile-browser{
+  display: none;
+}
+@media (min-width: 0px) and (max-width: 813px) {
+  .web-browser {
     display: none;
+  } 
+
+  .mobile-browser{
+  display: inline;
   }
+
+  .carousel-control-prev {
+  height: 30px;
+  width: 30px;
+  background: none repeat scroll 0 0 #2222222c;
+  border: 4px solid #ffffff;
+  border-radius: 23px 23px 23px 23px;
+  margin-top: 50px;
+}
+.carousel-control-next {
+  height: 30px;
+  width: 30px;
+  background: none repeat scroll 0 0 #2222222c;
+  border: 4px solid #ffffff;
+  border-radius: 23px 23px 23px 23px;
+  margin-top: 50px ;
+}
 }
 </style>
