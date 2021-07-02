@@ -1,6 +1,7 @@
 <template>
   <div class="container order-page">
     <h1>My Orders</h1>
+    <p class="text-muted" style="text-align: right; margin-bottom:2px"><i>(max 10)</i></p>
     <table class="table">
       <thead>
         <tr>
@@ -57,6 +58,7 @@ export default {
     db.collection("Orders")
       .where("user_id", "==", this.user.uid)
       .orderBy("timestamp", "desc")
+      .limit(11)
       .get()
       .then((querySnapshot) => {
         querySnapshot.forEach((element) => {
