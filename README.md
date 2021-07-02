@@ -55,17 +55,17 @@ To create a safe and easy way to build an online ecommerce store.
 - [ ] Development : on Checkoutpage fetch actual product information from db and compare against cart items to see if product is still available and current price. if anything comes up handle and prompt user about it.
 - [ ] Development - on place order page confirm total price of existing cart items with the price available in db. consider prices from db as final.
 - [ ] Development : Create Admin/Orders component to display current orders
-- [ ] Development : Store all the orders use make and transactiond details
+- [X] Development : Store all the orders use make and transactiond details
 - [X] Development : Create 404 Error page
 - [X] Development : Create logout success page
-- [ ] Development : Create Customer checkout form for storing customer details
+- [X] Development : Create Customer checkout form for storing customer details
 - [ ] Development : Load product page as per the option(gender) selected in NavBar
 - [X] Development : Display success alert when product added to cart.
 - [ ] Development : Product suggestion section.
 - [X] Development : User profile screens and sign-in functionality for user
 - [ ] Development : Allow user to edit her information including address information and also rest or change password from profile settings
-- [ ] Development : Store users recently viewed orders
-- [ ] Development : Display Actual price and discounted price
+- [X] Development : Store users recently viewed orders
+- [X] Development : Display Actual price and discounted price
 - [ ] Development : Implement OAuth2 for login 
 - [X] Fix : Banner image exceeds overlay on Home Screen
 - [X] Fix : Checkout screen alignment in mobile view
