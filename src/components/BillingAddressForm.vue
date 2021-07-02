@@ -7,32 +7,21 @@
     <div class="row">
       <div class="col-md-4 order-md-2 mb-4">
         <h4 class="d-flex justify-content-between align-items-center mb-3">
-          <span class="text-muted">Your cart</span>
+          <span class="text">Your cart</span>
           <span class="badge badge-secondary badge-pill">3</span>
         </h4>
-        <ul class="list-group mb-3">
-          <li
-            class="list-group-item d-flex justify-content-left"
-            v-for="(product, index) in cart"
-            :key="index"
-          >
-            <div class="row">
-              <h6 class="col-8">
-                {{ product.productName.substring(0, 25) }}
-              </h6>
-              <h6 class="col-2">X {{ product.productQuantity }}</h6>
-              <span class="text-muted col-2"
-                >${{ product.productPrice * product.productQuantity }}</span
-              >
-            </div>
-          </li>
-
-          <li class="list-group-item d-flex justify-content-between">
-            <span>Total (USD)</span>
-            <strong>$20</strong>
-          </li>
-        </ul>
-
+        
+        <table class="table">
+              
+              <tbody>
+                <tr v-for="(product, index) in cart" class="row" :key="index">
+                  <td class="col-6  text-muted" style="text-align: left"><i>{{ product.productName }}</i></td>
+                  <td class="col-3">{{ product.productPrice }}</td>
+                  <td class="col-3">X {{ product.productQuantity }}</td>
+                </tr>
+              </tbody>
+              <th style="text-align: left">Total: ${{totalPrice}}</th>
+            </table>
         <!-- <form class="card p-2">
             <div class="input-group">
               <input
@@ -192,6 +181,7 @@ export default {
         user_email: null,
         totalOrderPrice: null,
       },
+      totalPrice: 0,
     };
   },
   props: {
@@ -204,8 +194,19 @@ export default {
     postcode: null,
     cart: null,
   },
-
+  created() {
+    this.calculateTotalPrice();
+  },
   methods: {
+    calculateTotalPrice() {
+      this.cart.forEach((product) => {
+        this.totalPrice =
+          this.totalPrice +
+          parseFloat(product.productPrice) *
+            parseFloat(product.productQuantity);
+      });
+      
+    },
     formatRequest() {
       this.request.address = this.address;
       this.request.already_paid = false;
@@ -227,7 +228,7 @@ export default {
        *it will send it tu the data base.
        */
       this.cart.forEach((product) => {
-        this.request.products={
+        this.request.products = {
           id: product.productId,
           product_name: product.productName,
           product_price: product.productPrice,
@@ -237,15 +238,18 @@ export default {
           .add(this.request)
           .then((docRef) => {
             console.log("Document Id:", docRef.id);
-            this.request.products=null;
+            this.request.products = null;
           })
           .catch((error) => {
             console.log(error);
             this.$router.push("/order-failed");
           });
-      })
+      });
       this.$router.push("/order-success");
     },
   },
 };
 </script>
+<style scoped>
+
+</style>
